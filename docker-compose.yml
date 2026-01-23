@@ -19,6 +19,7 @@ services:
       test: ["CMD-SHELL", "pg_isready -U myuser"]
       interval: 10s
       timeout: 5s
+      start_period: 90s
       retries: 5
 
   # C# .NET Backend Service
@@ -27,6 +28,7 @@ services:
       context: ./Csharp_dotNET_backend
       dockerfile: Dockerfile
     container_name: csharp-backend
+    command: ["./wait-for-it.sh"]
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=postgres-db;Port=5432;Database=mydatabase;Username=myuser;Password=mypassword
