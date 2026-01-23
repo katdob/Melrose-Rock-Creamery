@@ -1,0 +1,16 @@
+bin/
+obj/
+.git
+.gitignore
+*.user
+*.suo
+*.cache
+*.dll
+*.exe
+*.pdb
+.vs/
+*.csproj.user
+*.csproj.vspscc
+*.sln.docstates
+.DS_Store
+README.md

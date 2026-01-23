@@ -1,0 +1,8 @@
+# Navigate to the project root
+cd /Users/katdobbins/Desktop/learning/cursor_ai
+
+# Start only the PostgreSQL service
+docker-compose up postgres-db
+
+# Or start it in detached mode (runs in background)
+docker-compose up -d postgres-db

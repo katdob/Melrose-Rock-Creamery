@@ -1,0 +1,69 @@
+services:
+  # PostgreSQL Database Service
+  postgres-db:
+    build:
+      context: ./PostgreSQL_DB
+      dockerfile: Dockerfile
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-db-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # C# .NET Backend Service
+  csharp-backend:
+    build:
+      context: ./Csharp_dotNET_backend
+      dockerfile: Dockerfile
+    container_name: csharp-backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres-db;Port=5432;Database=mydatabase;Username=myuser;Password=mypassword
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    networks:
+      - backend-db-network
+      - frontend-backend-network
+    restart: unless-stopped
+
+  # React Frontend Service
+  react-frontend:
+    build:
+      context: ./React_frontend
+      dockerfile: Dockerfile
+    container_name: react-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - csharp-backend
+    networks:
+      - frontend-backend-network
+    restart: unless-stopped
+
+# Networks
+networks:
+  backend-db-network:
+    driver: bridge
+    name: backend-db-network
+  frontend-backend-network:
+    driver: bridge
+    name: frontend-backend-network
+
+# Volumes
+volumes:
+  postgres_data:
+    driver: local

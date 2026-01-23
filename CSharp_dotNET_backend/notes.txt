@@ -1,0 +1,7 @@
+To use the Dockerfile:
+
+Build the image:
+cd Csharp_dotNET_backend && docker build -t csharp-backend .
+
+Run the container:
+docker run csharp-backend

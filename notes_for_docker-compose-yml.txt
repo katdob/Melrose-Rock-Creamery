@@ -1,0 +1,15 @@
+# Build and start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+
+# Stop and remove volumes (clean slate)
+docker-compose down -v
+
+
+# NUKE everything 
+docker-compose down -v && docker system prune -a -f && docker-compose up -d --build
