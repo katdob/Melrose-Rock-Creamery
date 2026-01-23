@@ -1,0 +1,18 @@
+- customize frontend 
+- ask AI to write css images / animations in css 
+-- recipe card for recipe ui container 
+-- ice cream cone or other icon 
+-- decide on fonts 
+-- decide on color scheme 
+-- nginx to ensure that you don't need to handle headers in the api call files 
+
+- customize backend 
+-- define models 
+-- how does .NET handle data migrations? 
+-- how does .NET do api endpoints? 
+-- make sure that nobody can run a sneaky api query from the browser 
+
+- customize database 
+-- make a seed_database file and have it OPTIONALLY run immediately after the backend is up and connected to the db 
+-- fill with the seed data 
+-- have it populate from a snapshot of an already seeded database 
