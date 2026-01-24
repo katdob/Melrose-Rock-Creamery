@@ -1,9 +1,41 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.5rem 2rem 2rem;
   text-align: center;
+  /* --primary-bg-color: #1e90ff; */
+  /* color palette variables */
+  --minty-ice-cream: #DEFFFC;
+  --lavender: #E2E4F6;
+  --floral-light-pink: #E7C8DD;
+  --plush-light-medium-pink: #DBAFC1;
+  --dark-dusty-rose: #86626E;
+  --vanilla: #EEEBD0;
+  --dull-blush: #EBB3A9;
+  --medium-blush-pink: #E87EA1;
+  --pinky-orange: #E86252;
+  --mild-hot-pink: #EE2677;
 }
+
+/* COLOR PALETTES */
+
+/* 
+minty ice cream palette 
+#DEFFFC minty 
+#E2E4F6 lavender 
+#E7C8DD floral light pink 
+#DBAFC1 plush light-medium pink 
+#86626E dark dusty rose
+*/
+
+/* 
+pinky ice cream palette 
+#EEEBD0 vanilla 
+#EBB3A9 dull blush (makeup color)
+#E87EA1 medium blush pink 
+#E86252 pinky-orange 
+#EE2677 mild-hot pink 
+*/
 
 .logo {
   height: 6em;
@@ -31,6 +63,57 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
+}
+
+.top-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.header-with-underline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-with-underline .h1-underline {
+  display: block;
+  margin-top: -1.75rem;
+  margin-left: -3rem;
+  width: calc(100% + 3rem);
+  height: 8px;
+  background: var(--plush-light-medium-pink);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-top: -1rem;
+}
+
+.tab {
+  padding: 0.5rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--dark-dusty-rose);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab:hover {
+  color: var(--mild-hot-pink);
+}
+
+.tab--active {
+  color: var(--mild-hot-pink);
+  border-bottom-color: var(--plush-light-medium-pink);
 }
 
 .card {

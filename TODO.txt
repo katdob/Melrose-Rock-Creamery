@@ -1,9 +1,7 @@
 - customize frontend 
-- ask AI to write css images / animations in css 
+-- define content for each tab 
 -- recipe card for recipe ui container 
--- ice cream cone or other icon 
 -- decide on fonts 
--- decide on color scheme 
 -- nginx to ensure that you don't need to handle headers in the api call files 
 
 - customize backend 

@@ -19,3 +19,24 @@ npm warn Unknown env config "devdir". This will stop working in the next major v
 
 ------ 
 
+Welcome to Melrose Rock Creamery! 
+
+We are more than an ice cream shop. We're also your local makerspace, but for frozen treats! 
+
+You can make and sell your ice cream here. Or, you can make recipes for our Super Scoopers to serve to customers.
+This includes milkshakes, sundaes, floats, and more. 
+
+Our tasting room is open from 10am - 2pm and 6pm - 11pm every day. 
+
+At our facility near Boston we have the following equipment:
+[EquipmentOne]
+[EquipmentTwo]
+[EquipmentThree]
+[EquipmentFour]
+[EquipmentFive]
+[EquipmentSix]
+
+To use the purely fictional facilities at Melrose Rock Creamery, you must be a member. 
+We charge a monthly membership fee. See the details of using our kitchen [here]. 
+
+We also have [rules] and [qualifications] that you must abide by to be a member. [Apply now!] 
