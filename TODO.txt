@@ -1,11 +1,10 @@
 - customize frontend 
--- define content for each tab 
 -- recipe card for recipe ui container 
--- decide on fonts 
 -- nginx to ensure that you don't need to handle headers in the api call files 
 
 - customize backend 
--- define models 
+-- define interfaces 
+-- define classes/models 
 -- how does .NET handle data migrations? 
 -- how does .NET do api endpoints? 
 -- make sure that nobody can run a sneaky api query from the browser 
