@@ -19,6 +19,8 @@ npm warn Unknown env config "devdir". This will stop working in the next major v
 
 ------ 
 
+ABOUT.JSX 
+
 Welcome to Melrose Rock Creamery! 
 
 We are more than an ice cream shop. We're also your local makerspace, but for frozen treats! 
@@ -40,3 +42,24 @@ To use the purely fictional facilities at Melrose Rock Creamery, you must be a m
 We charge a monthly membership fee. See the details of using our kitchen [here]. 
 
 We also have [rules] and [qualifications] that you must abide by to be a member. [Apply now!] 
+
+-------
+
+MEMBERSHIP.JSX
+
+Membership Information 
+
+With a membership at Melrose Rock Creamery, you will gain access to all of our machines. 
+
+Before using any of the machines, you will need to be trained. Training is included in membership, and this includes access to our expert team who will help you if you need more information. Please schedule your training [here]. A team member will get back to you within 1 working day.
+
+Our online catalogue includes the manuals for all the machines in our kitchen. You can use our search feature to search our entire catalogue for and answers you may need. 
+
+To use our kitchen, you will need to schedule time. You can find the schedule [here]. Please include 15 minutes at the end of each timeslot to clean up. You must leave the kitchen clean and ready for the next member. 
+
+You membership can optionally includes access to a storage unit. You can use our hand trucks to take your equpiment to and from this storage unit. 
+
+-------
+
+MENU.JSX 
+

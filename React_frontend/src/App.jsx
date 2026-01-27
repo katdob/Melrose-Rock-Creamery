@@ -1,9 +1,13 @@
 import { useState } from 'react'
 import IceCream from './assets/ice-cream.svg'
+import About from './screens/About'
+import Membership from './screens/Membership'
+import Contact from './screens/Contact'
+import Recipes from './screens/Recipes'
+import Menu from './screens/Menu'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [activeTab, setActiveTab] = useState('menu')
 
   return (
@@ -18,15 +22,6 @@ function App() {
           <h1>Melrose Rock Creamery</h1>
           <span className="h1-underline" aria-hidden="true" />
         </div>
-        {/* <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a> */}
-        {/* <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a> */}
-        {/* <svg version="1.2" width="200" height="200">
-          <use href="./assets/ice-cream.svg#ice-cream" />
-        </svg> */}
       </div>
       <div className="tabs">
         <button
@@ -59,10 +54,23 @@ function App() {
         </button>
       </div>
       <div className="card">
-        {/* <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button> */}
+        {activeTab === 'menu' && <Menu />}
+        {activeTab === 'about' && <About onNavigate={setActiveTab} />}
+        {activeTab === 'membership' && <Membership />}
+        {activeTab === 'contact' && <Contact />}
+        {activeTab === 'recipes' && <Recipes />}
       </div>
+      <footer className="footer">
+        <span 
+          className="footer-link" 
+          onClick={() => setActiveTab('contact')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === 'Enter' && setActiveTab('contact')}
+        >
+          Contact the MRC team
+        </span>
+      </footer>
     </>
   )
 }

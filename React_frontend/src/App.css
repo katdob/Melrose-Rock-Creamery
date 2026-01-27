@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0.5rem 2rem 2rem;
+  padding: 0.5rem 2rem 4rem;
   text-align: center;
   /* --primary-bg-color: #1e90ff; */
   /* color palette variables */
@@ -70,7 +70,13 @@ pinky ice cream palette
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 0;
+  background: #ffffff;
+  z-index: 100;
 }
 
 .header-with-underline {
@@ -92,7 +98,13 @@ pinky ice cream palette
   display: flex;
   justify-content: center;
   gap: 0;
-  margin-top: -1rem;
+  position: fixed;
+  top: 12rem;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  z-index: 99;
+  padding: 0.5rem 0;
 }
 
 .tab {
@@ -118,8 +130,284 @@ pinky ice cream palette
 
 .card {
   padding: 2em;
+  margin-top: 15rem;
+}
+
+.about {
+  max-width: 38rem;
+  margin: 0 auto;
+  text-align: left;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 38rem;
+  padding: 1rem 0;
+  background: white;
+  border-top: 3px solid var(--plush-light-medium-pink);
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
+
+.footer-link {
+  color: var(--dark-dusty-rose);
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--mild-hot-pink);
+}
+
+/* Contact Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--dark-dusty-rose);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--lavender);
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--plush-light-medium-pink);
+}
+
+.send-button {
+  padding: 0.75rem 1.5rem;
+  background: var(--plush-light-medium-pink);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+}
+
+.send-button:hover {
+  background: var(--dark-dusty-rose);
+}
+
+.confirmation-message {
+  padding: 1rem;
+  background: var(--minty-ice-cream);
+  border-radius: 4px;
+  color: var(--dark-dusty-rose);
+}
+
+/* Recipe Styling */
+.recipe-intro {
+  font-style: italic;
+  color: var(--dark-dusty-rose);
+}
+
+.ingredients-list,
+.instructions-list {
+  padding-left: 1.5rem;
+}
+
+.ingredients-list li,
+.instructions-list li {
+  margin-bottom: 0.5rem;
+}
+
+.instructions-list li {
+  margin-bottom: 1rem;
+}
+
+.menu-welcome {
+  position: fixed;
+  top: 15rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45rem;
+  background: #ffffff;
+  z-index: 98;
+  padding: 1rem 0 0.5rem;
+  box-sizing: border-box;
+}
+
+.menu-welcome p {
+  margin: 0;
+}
+
+.menu-scroll {
+  max-height: calc(100vh - 27rem);
+  overflow-y: scroll;
+  overflow-x: visible;
+  padding-right: 0.5rem;
+  scrollbar-gutter: stable;
+  margin-top: 4rem;
+  width: 45rem;
+}
+
+/* Firefox */
+.menu-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--plush-light-medium-pink) var(--lavender);
+}
+
+.menu-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.menu-scroll::-webkit-scrollbar-track {
+  background: var(--lavender);
+  border-radius: 4px;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb {
+  background: var(--plush-light-medium-pink);
+  border-radius: 4px;
+}
+
+.menu-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-dusty-rose);
+}
+
+.content-scroll {
+  max-height: calc(100vh - 22rem);
+  overflow-y: scroll;
+  padding-right: 0.5rem;
+  scrollbar-gutter: stable;
+}
+
+/* Firefox */
+.content-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--plush-light-medium-pink) var(--lavender);
+}
+
+.content-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content-scroll::-webkit-scrollbar-track {
+  background: var(--lavender);
+  border-radius: 4px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb {
+  background: var(--plush-light-medium-pink);
+  border-radius: 4px;
+}
+
+.content-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-dusty-rose);
+}
+
+.menu-list {
+  list-style: none;
+  padding: 1rem 0 0;
+  margin: 0;
+}
+
+.menu-list li {
+  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ingredient-icon {
+  position: relative;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.ingredient-tooltip {
+  display: none;
+  position: absolute;
+  left: 1.5rem;
+  top: 0;
+  background: white;
+  border: 2px solid var(--plush-light-medium-pink);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  min-width: 250px;
+  max-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 200;
+  text-align: left;
+}
+
+.ingredient-tooltip strong {
+  color: var(--mild-hot-pink);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ingredient-tooltip ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.85rem;
+  color: var(--dark-dusty-rose);
+}
+
+.ingredient-tooltip ul li {
+  padding: 0.2rem 0;
+  display: list-item;
+}
+
+.ingredient-icon:hover .ingredient-tooltip {
+  display: block;
+}
+
+.ingredient-icon .ingredient-tooltip.tooltip-above {
+  top: auto !important;
+  bottom: 100% !important;
+  margin-bottom: 0.5rem;
+}
+
+.recipe-separator {
+  border: none;
+  border-top: 2px solid var(--plush-light-medium-pink);
+  margin: 2rem 0;
+}
+
+.highlight-link,
+a.highlight-link,
+a.highlight-link:visited {
+  color: var(--mild-hot-pink);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.highlight-link:hover,
+a.highlight-link:hover {
+  text-decoration: underline;
+  color: var(--mild-hot-pink);
 }
