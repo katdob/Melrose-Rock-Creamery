@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Ice cream scoop - three merged circles -->
+  <!-- middle circle -->
+  <circle cx="256" cy="140" r="130" fill="#EE2677"/>
+  <!-- left circle -->
+  <circle cx="170" cy="200" r="70" fill="#EE2677"/>
+  <!-- right circle -->
+  <circle cx="342" cy="200" r="70" fill="#EE2677"/> 
+  
+  <!-- White curved line to separate scoop from cone -->
+  <!-- <path d="M 140 220 Q 200 280 256 260 Q 312 280 372 220" 
+        fill="none" 
+        stroke="white" 
+        stroke-width="16" 
+        stroke-linecap="round"/> -->
+  
+  <!-- Cone -->
+  <path d="M 150 250 L 256 450 L 362 250 Z" fill="#EE2677"/>
+</svg>
