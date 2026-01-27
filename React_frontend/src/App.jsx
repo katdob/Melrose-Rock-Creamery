@@ -5,13 +5,16 @@ import Membership from './screens/Membership'
 import Contact from './screens/Contact'
 import Recipes from './screens/Recipes'
 import Menu from './screens/Menu'
+import NewsletterPopup from './components/NewsletterPopup'
 import './App.css'
 
 function App() {
   const [activeTab, setActiveTab] = useState('menu')
+  const [showPopup, setShowPopup] = useState(true)
 
   return (
     <>
+      {showPopup && <NewsletterPopup onClose={() => setShowPopup(false)} />}
       <div className="top-inline">
         <img 
           src={IceCream} 
