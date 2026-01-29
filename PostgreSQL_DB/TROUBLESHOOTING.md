@@ -91,7 +91,7 @@ healthcheck:
 
 ```bash
 docker compose ps
-docker compose exec postgres-db psql -U myuser -d mydatabase -c "SELECT 1;"
+docker compose exec postgres-db psql -U mrc_user -d MRC_DB -c "SELECT 1;"
 ```
 
 ---

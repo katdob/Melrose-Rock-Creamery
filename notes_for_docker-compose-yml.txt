@@ -13,3 +13,6 @@ docker-compose down -v
 
 # NUKE everything 
 docker-compose down -v && docker system prune -a -f && docker-compose up -d --build
+
+# MRC_API ↔ PostgreSQL connection
+# See docs/MRC_API_DATABASE_SETUP.md for Dockerfile changes (Csharp_dotNET_backend, PostgreSQL_DB) and connection details.

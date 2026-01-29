@@ -6,3 +6,6 @@ docker-compose up postgres-db
 
 # Or start it in detached mode (runs in background)
 docker-compose up -d postgres-db
+
+# to get into the shell from the docker container on docker desktop exec
+psql -d MRC_DB -U mrc_user

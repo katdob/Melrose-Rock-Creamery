@@ -1,8 +1,8 @@
 # FROM postgres:latest
 FROM postgres:17
 
-ENV POSTGRES_USER=mrc_user
-ENV POSTGRES_PASSWORD=mrc_manager
 ENV POSTGRES_DB=MRC_DB
+ENV POSTGRES_USER=mrc_user
+ENV POSTGRES_PASSWORD=passpass
 
 EXPOSE 5432

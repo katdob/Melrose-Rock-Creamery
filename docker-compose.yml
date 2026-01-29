@@ -6,9 +6,9 @@ services:
       dockerfile: Dockerfile
     container_name: postgres-db
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_USER: mrc_user
+      POSTGRES_PASSWORD: passpass
+      POSTGRES_DB: MRC_DB
     ports:
       - "5432:5432"
     volumes:
@@ -16,7 +16,7 @@ services:
     networks:
       - backend-db-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U myuser"]
+      test: ["CMD-SHELL", "pg_isready -U mrc_user -d MRC_DB"]
       interval: 10s
       timeout: 5s
       start_period: 90s
@@ -31,7 +31,7 @@ services:
     command: ["./wait-for-it.sh"]
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Host=postgres-db;Port=5432;Database=mydatabase;Username=myuser;Password=mypassword
+      - ConnectionStrings__DefaultConnection=Host=postgres-db;Port=5432;Database=MRC_DB;Username=mrc_user;Password=passpass
     ports:
       - "8080:8080"
     depends_on:

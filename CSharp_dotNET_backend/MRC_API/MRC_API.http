@@ -1,0 +1,6 @@
+@MRC_API_HostAddress = http://localhost:5252
+
+GET {{MRC_API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
