@@ -7,5 +7,9 @@ docker-compose up postgres-db
 # Or start it in detached mode (runs in background)
 docker-compose up -d postgres-db
 
+# to run from db dump & copy to dir 
+pg_dump -U mrc_user -d MRC_DB > 30Jan2026_first_5_recipe_data.sql 
+docker cp postgres-db:30Jan2026_first_5_recipe_data.sql . 
+
 # to get into the shell from the docker container on docker desktop exec
 psql -d MRC_DB -U mrc_user
