@@ -5,3 +5,14 @@ cd Csharp_dotNET_backend && docker build -t csharp-backend .
 
 Run the container:
 docker run csharp-backend
+
+
+API calls, for use in Postman or the browser:
+
+for test 
+http://localhost:8080/first 
+for recipes 
+http://localhost:8080/recipes
+for ingredients for a particular recipe 
+
+for instructions for a particular recipe 

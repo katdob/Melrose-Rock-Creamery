@@ -19,10 +19,13 @@ public class MRCDbContext : DbContext
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).HasMaxLength(200);
             e.Property(x => x.Author).HasMaxLength(100);
+            e.Property(x => x.IngredientList);
+            e.Ignore(x => x.Ingredients); // Link via IngredientList, not FK
         });
 
         modelBuilder.Entity<Ingredient>(e =>
         {
+            e.ToTable("Ingredient");
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).HasMaxLength(200);
             e.Property(x => x.Unit).HasMaxLength(50);
@@ -30,6 +33,7 @@ public class MRCDbContext : DbContext
 
         modelBuilder.Entity<Instruction>(e =>
         {
+            e.ToTable("Instruction");
             e.HasKey(x => x.Id);
             e.HasIndex(x => x.RecipeId);
         });

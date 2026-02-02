@@ -1,17 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using MRC_API.Data;
+using MRC_API.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 
+// PostgreSQL connection via Npgsql + Entity Framework Core
 var conn = builder.Configuration.GetConnectionString("DefaultConnection");
-if (!string.IsNullOrEmpty(conn))
-{
-    builder.Services.AddDbContext<MRCDbContext>(options =>
-        options.UseNpgsql(conn));
-}
+if (string.IsNullOrEmpty(conn))
+    throw new InvalidOperationException("ConnectionStrings:DefaultConnection is required.");
+builder.Services.AddDbContext<MRCDbContext>(options =>
+    options.UseNpgsql(conn));
 
 var app = builder.Build();
 
@@ -46,6 +47,11 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapFirstApi();
+app.MapGetRecipes();
+app.MapIngredients();
+app.MapInstructions();
 
 var summaries = new[]
 {
