@@ -50,6 +50,11 @@ app.UseHttpsRedirection();
 
 app.MapFirstApi();
 app.MapGetRecipes();
+app.MapGetRecipe();
+app.MapPostRecipe();
+app.MapGetIngredient();
+app.MapPostIngredient();
+app.MapPostInstruction();
 app.MapIngredients();
 app.MapInstructions();
 

@@ -4,7 +4,7 @@ const Membership = () => {
       <div className="content-scroll">
         <p>With a membership at Melrose Rock Creamery, you will gain access to all of our machines.</p>
 
-        <p>Before using any of the machines, you will need to be trained. Training is included in your membership. Your membership also includesaccess to our expert team who will help you if you need more information. Please schedule your training <span className="highlight-link">here</span>. </p>
+        <p>Before using any of the machines, you will need to be trained. Training is included in your membership. Your membership also includes access to our expert team who will help you if you need more information. Please schedule your training <span className="highlight-link">here</span>. </p>
 
         <p>Our <span className="highlight-link">online catalogue</span> includes the manuals for all the machines in our kitchen. You can use our search feature to search our entire catalogue for any answers you may need.</p>
 
