@@ -1,4 +1,6 @@
-const About = ({ onNavigate }) => {
+import { Link } from '@tanstack/react-router'
+
+const About = () => {
   return (
     <div className="about">
       <div className="content-scroll">
@@ -11,7 +13,7 @@ const About = ({ onNavigate }) => {
         <p>Our tasting room is open from 10am - 2pm and 6pm - 11pm every day.</p>
 
         <p>To use the purely fictional facilities at Melrose Rock Creamery, you must be a member.
-        We charge a monthly membership fee. See the details of using our kitchen <span className="highlight-link" onClick={() => onNavigate('membership')}>here</span>.</p>
+        We charge a monthly membership fee. See the details of using our kitchen <Link to="/membership" className="highlight-link">here</Link>.</p>
 
         <p>We also have <span className="highlight-link">rules</span> and <span className="highlight-link">qualifications</span> that you must abide by to be a member. <span className="highlight-link">Apply now</span>!</p>
       </div>

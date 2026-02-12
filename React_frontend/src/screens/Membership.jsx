@@ -1,3 +1,5 @@
+import { Link } from '@tanstack/react-router'
+
 const Membership = () => {
   return (
     <div className="about">
@@ -12,7 +14,7 @@ const Membership = () => {
 
         <p>Your membership can optionally include access to a storage unit. You can use our hand trucks to take your equipment to and from this storage unit.</p>
 
-        <p>At Melrose Rock Creamery, we want you to be able to make anything you dream of. To help you with this, your membership includes access to a <a href="/recipe-catalogue" target="_blank" rel="noopener noreferrer" className="highlight-link">catalogue of recipes</a> from our community. Many recipes are available, along with comments from our members. This means that you can find your favorite recipes, and see some protips for those recipes from people who have made that recipe before.</p>
+        <p>At Melrose Rock Creamery, we want you to be able to make anything you dream of. To help you with this, your membership includes access to a <Link to="/recipe-catalogue" className="highlight-link" target="_blank" rel="noopener noreferrer">catalogue of recipes</Link> from our community. Many recipes are available, along with comments from our members. This means that you can find your favorite recipes, and see some protips for those recipes from people who have made that recipe before.</p>
       </div>
     </div>
   );
