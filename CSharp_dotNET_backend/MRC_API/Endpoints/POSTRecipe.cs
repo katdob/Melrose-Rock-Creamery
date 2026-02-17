@@ -39,7 +39,7 @@ public static class POSTRecipe
                 await db.SaveChangesAsync();
             }
 
-            return Results.Created($"/recipes/{recipe.Id}", new { recipe.Id, recipe.Name, recipe.Author, recipe.CreatedDate });
+            return Results.Created($"/recipes/{recipe.Id}", new { id = recipe.Id, name = recipe.Name, author = recipe.Author, createdDate = recipe.CreatedDate });
         })
             .WithName("PostRecipe");
 

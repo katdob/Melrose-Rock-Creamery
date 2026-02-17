@@ -13,8 +13,11 @@ const RecipeCatalogue = () => {
         </div>
       </div>
       <div className="tabs">
+        <Link to="/recipe-catalogue/add-new-recipe" activeProps={{ className: 'tab tab--active' }} inactiveProps={{ className: 'tab' }}>
+          Add new recipe
+        </Link>
         <Link to="/recipe-catalogue/my-recipes" activeProps={{ className: 'tab tab--active' }} inactiveProps={{ className: 'tab' }}>
-          My Recipes
+          My recipes
         </Link>
         <Link to="/recipe-catalogue/catalogue" activeProps={{ className: 'tab tab--active' }} inactiveProps={{ className: 'tab' }}>
           Catalogue

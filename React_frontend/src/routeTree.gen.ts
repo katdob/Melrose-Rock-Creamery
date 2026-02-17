@@ -15,6 +15,7 @@ import { Route as RecipeCatalogueIndexRouteImport } from './routes/recipe-catalo
 import { Route as MainIndexRouteImport } from './routes/_main/index'
 import { Route as RecipeCatalogueMyRecipesRouteImport } from './routes/recipe-catalogue/my-recipes'
 import { Route as RecipeCatalogueCatalogueRouteImport } from './routes/recipe-catalogue/catalogue'
+import { Route as RecipeCatalogueAddNewRecipeRouteImport } from './routes/recipe-catalogue/add-new-recipe'
 import { Route as MainRecipesRouteImport } from './routes/_main/recipes'
 import { Route as MainMenuRouteImport } from './routes/_main/menu'
 import { Route as MainMembershipRouteImport } from './routes/_main/membership'
@@ -52,6 +53,12 @@ const RecipeCatalogueCatalogueRoute =
     path: '/catalogue',
     getParentRoute: () => RecipeCatalogueRoute,
   } as any)
+const RecipeCatalogueAddNewRecipeRoute =
+  RecipeCatalogueAddNewRecipeRouteImport.update({
+    id: '/add-new-recipe',
+    path: '/add-new-recipe',
+    getParentRoute: () => RecipeCatalogueRoute,
+  } as any)
 const MainRecipesRoute = MainRecipesRouteImport.update({
   id: '/recipes',
   path: '/recipes',
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/membership': typeof MainMembershipRoute
   '/menu': typeof MainMenuRoute
   '/recipes': typeof MainRecipesRoute
+  '/recipe-catalogue/add-new-recipe': typeof RecipeCatalogueAddNewRecipeRoute
   '/recipe-catalogue/catalogue': typeof RecipeCatalogueCatalogueRoute
   '/recipe-catalogue/my-recipes': typeof RecipeCatalogueMyRecipesRoute
   '/recipe-catalogue/': typeof RecipeCatalogueIndexRoute
@@ -96,6 +104,7 @@ export interface FileRoutesByTo {
   '/membership': typeof MainMembershipRoute
   '/menu': typeof MainMenuRoute
   '/recipes': typeof MainRecipesRoute
+  '/recipe-catalogue/add-new-recipe': typeof RecipeCatalogueAddNewRecipeRoute
   '/recipe-catalogue/catalogue': typeof RecipeCatalogueCatalogueRoute
   '/recipe-catalogue/my-recipes': typeof RecipeCatalogueMyRecipesRoute
   '/': typeof MainIndexRoute
@@ -110,6 +119,7 @@ export interface FileRoutesById {
   '/_main/membership': typeof MainMembershipRoute
   '/_main/menu': typeof MainMenuRoute
   '/_main/recipes': typeof MainRecipesRoute
+  '/recipe-catalogue/add-new-recipe': typeof RecipeCatalogueAddNewRecipeRoute
   '/recipe-catalogue/catalogue': typeof RecipeCatalogueCatalogueRoute
   '/recipe-catalogue/my-recipes': typeof RecipeCatalogueMyRecipesRoute
   '/_main/': typeof MainIndexRoute
@@ -125,6 +135,7 @@ export interface FileRouteTypes {
     | '/membership'
     | '/menu'
     | '/recipes'
+    | '/recipe-catalogue/add-new-recipe'
     | '/recipe-catalogue/catalogue'
     | '/recipe-catalogue/my-recipes'
     | '/recipe-catalogue/'
@@ -135,6 +146,7 @@ export interface FileRouteTypes {
     | '/membership'
     | '/menu'
     | '/recipes'
+    | '/recipe-catalogue/add-new-recipe'
     | '/recipe-catalogue/catalogue'
     | '/recipe-catalogue/my-recipes'
     | '/'
@@ -148,6 +160,7 @@ export interface FileRouteTypes {
     | '/_main/membership'
     | '/_main/menu'
     | '/_main/recipes'
+    | '/recipe-catalogue/add-new-recipe'
     | '/recipe-catalogue/catalogue'
     | '/recipe-catalogue/my-recipes'
     | '/_main/'
@@ -201,6 +214,13 @@ declare module '@tanstack/react-router' {
       path: '/catalogue'
       fullPath: '/recipe-catalogue/catalogue'
       preLoaderRoute: typeof RecipeCatalogueCatalogueRouteImport
+      parentRoute: typeof RecipeCatalogueRoute
+    }
+    '/recipe-catalogue/add-new-recipe': {
+      id: '/recipe-catalogue/add-new-recipe'
+      path: '/add-new-recipe'
+      fullPath: '/recipe-catalogue/add-new-recipe'
+      preLoaderRoute: typeof RecipeCatalogueAddNewRecipeRouteImport
       parentRoute: typeof RecipeCatalogueRoute
     }
     '/_main/recipes': {
@@ -262,12 +282,14 @@ const MainRouteChildren: MainRouteChildren = {
 const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 interface RecipeCatalogueRouteChildren {
+  RecipeCatalogueAddNewRecipeRoute: typeof RecipeCatalogueAddNewRecipeRoute
   RecipeCatalogueCatalogueRoute: typeof RecipeCatalogueCatalogueRoute
   RecipeCatalogueMyRecipesRoute: typeof RecipeCatalogueMyRecipesRoute
   RecipeCatalogueIndexRoute: typeof RecipeCatalogueIndexRoute
 }
 
 const RecipeCatalogueRouteChildren: RecipeCatalogueRouteChildren = {
+  RecipeCatalogueAddNewRecipeRoute: RecipeCatalogueAddNewRecipeRoute,
   RecipeCatalogueCatalogueRoute: RecipeCatalogueCatalogueRoute,
   RecipeCatalogueMyRecipesRoute: RecipeCatalogueMyRecipesRoute,
   RecipeCatalogueIndexRoute: RecipeCatalogueIndexRoute,

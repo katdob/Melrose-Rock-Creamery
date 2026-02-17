@@ -23,7 +23,7 @@ public static class POSTIngredient
                 .FirstOrDefaultAsync(i => i.Name == name && i.Unit == unit && i.Amount == amount);
 
             if (existing != null)
-                return Results.Ok(new { existing.Id, existing.Name, existing.Unit, existing.Amount });
+                return Results.Ok(new { id = existing.Id, name = existing.Name, unit = existing.Unit, amount = existing.Amount });
 
             var ingredient = new Ingredient
             {
@@ -35,7 +35,7 @@ public static class POSTIngredient
             db.Ingredients.Add(ingredient);
             await db.SaveChangesAsync();
 
-            return Results.Created($"/ingredients/{ingredient.Id}", new { ingredient.Id, ingredient.Name, ingredient.Unit, ingredient.Amount });
+            return Results.Created($"/ingredients/{ingredient.Id}", new { id = ingredient.Id, name = ingredient.Name, unit = ingredient.Unit, amount = ingredient.Amount });
         })
             .WithName("PostIngredient");
 

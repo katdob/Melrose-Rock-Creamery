@@ -19,6 +19,7 @@ public class MRCDbContext : DbContext
             e.HasKey(x => x.Id);
             e.Property(x => x.Name).HasMaxLength(200);
             e.Property(x => x.Author).HasMaxLength(100);
+            e.Property(x => x.IngredientList);
             e.Ignore(x => x.Ingredients);
         });
 
