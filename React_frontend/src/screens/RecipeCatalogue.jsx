@@ -1,5 +1,6 @@
 import { Link, Outlet } from '@tanstack/react-router'
 import IceCream from '../assets/ice-cream.svg'
+import { NewRecipeProvider } from '../context/NewRecipeContext'
 import '../App.css'
 
 const RecipeCatalogue = () => {
@@ -25,7 +26,9 @@ const RecipeCatalogue = () => {
       </div>
       <div className="card">
         <div className="about">
-          <Outlet />
+          <NewRecipeProvider>
+            <Outlet />
+          </NewRecipeProvider>
         </div>
       </div>
     </>
