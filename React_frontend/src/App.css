@@ -624,3 +624,35 @@ a.highlight-link:hover {
 .popup-success p {
   margin: 0;
 }
+
+.recipe-created-popup {
+  min-height: auto;
+  max-width: 32rem;
+}
+
+.recipe-created-popup-content {
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+}
+
+.recipe-created-popup-content h2 {
+  margin-bottom: 0.5rem;
+}
+
+.recipe-created-popup-content h3 {
+  color: var(--dark-dusty-rose);
+  font-size: 1rem;
+  margin: 1rem 0 0.25rem;
+}
+
+.recipe-created-list {
+  margin: 0 0 0 1rem;
+  padding-left: 1rem;
+  color: var(--dark-dusty-rose);
+}
+
+.recipe-created-popup-content .add-ingredient-btn {
+  margin-top: 1.5rem;
+  align-self: center;
+}

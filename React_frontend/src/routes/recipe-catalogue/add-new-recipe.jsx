@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { useNewRecipe } from '../../context/NewRecipeContext'
+import { postRecipe } from '../../api_calls/POSTRecipe'
+import { postIngredient } from '../../api_calls/POSTIngredient'
+import { postInstruction } from '../../api_calls/POSTInstructions'
 
 function AddNewRecipe() {
   const { NewRecipe, setNewRecipe } = useNewRecipe()
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false)
   const ingredients = NewRecipe.Ingredients ?? [{ Name: '', Unit: '', Amount: '' }]
   const instructions = NewRecipe.Instructions ?? [{ Text: '', Order: '', RecipeId: null }]
 
@@ -39,7 +43,7 @@ function AddNewRecipe() {
     })
   }
 
-  const handleAddRecipe = () => {
+  const handleAddRecipe = async () => {
     setErrorMessage(null)
     setSuccessMessage(null)
     const errors = []
@@ -59,11 +63,73 @@ function AddNewRecipe() {
       setErrorMessage(errors.join(' '))
       return
     }
-    setSuccessMessage('Recipe is ready to be added!')
+    try {
+      const created = await postRecipe(NewRecipe.Name.trim(), NewRecipe.Author.trim())
+      const recipeId = created.id
+      setNewRecipe((prev) => ({ ...prev, RecipeId: recipeId }))
+
+      const ingredients = NewRecipe.Ingredients ?? []
+      const results = await Promise.all(
+        ingredients.map((ing) =>
+          postIngredient(
+            String(ing.Name ?? '').trim(),
+            String(ing.Unit ?? '').trim(),
+            Number(ing.Amount) || 0
+          )
+        )
+      )
+      const ingredientsWithIds = ingredients.map((ing, i) => ({
+        ...ing,
+        IngredientId: results[i]?.id ?? null,
+      }))
+      setNewRecipe((prev) => ({ ...prev, Ingredients: ingredientsWithIds }))
+
+      const instructions = NewRecipe.Instructions ?? []
+      await Promise.all(
+        instructions.map((inst) =>
+          postInstruction(
+            String(inst.Text ?? '').trim(),
+            Number(inst.Order) || 0,
+            recipeId
+          )
+        )
+      )
+
+      setSuccessMessage(`Recipe "${created.name}" was added.`)
+      setShowSuccessPopup(true)
+    } catch (err) {
+      setErrorMessage(err.message || 'Failed to add recipe.')
+    }
   }
 
   return (
     <div className="content-scroll">
+      {showSuccessPopup && (
+        <div className="popup-overlay" role="dialog" aria-labelledby="recipe-created-title">
+          <div className="popup-container recipe-created-popup">
+            <div className="popup-content recipe-created-popup-content">
+              <h2 id="recipe-created-title">Recipe created</h2>
+              <p><strong>Name:</strong> {NewRecipe.Name}</p>
+              <p><strong>Author:</strong> {NewRecipe.Author}</p>
+              <h3>Ingredients</h3>
+              <ul className="recipe-created-list">
+                {(NewRecipe.Ingredients ?? []).map((ing, i) => (
+                  <li key={i}>{ing.Name} — {ing.Unit} {ing.Amount}</li>
+                ))}
+              </ul>
+              <h3>Instructions</h3>
+              <ul className="recipe-created-list">
+                {(NewRecipe.Instructions ?? []).map((inst, i) => (
+                  <li key={i}>{inst.Order}. {inst.Text}</li>
+                ))}
+              </ul>
+              <button type="button" className="add-ingredient-btn" onClick={() => setShowSuccessPopup(false)}>
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
        {/* <h2>Add new recipe</h2> */}
       {/* <p>Add a new recipe here.</p> */}
       {errorMessage && (
