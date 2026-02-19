@@ -64,8 +64,8 @@ function AddNewRecipe() {
 
   return (
     <div className="content-scroll">
-      <h2>Add new recipe</h2>
-      <p>Add a new recipe here.</p>
+       {/* <h2>Add new recipe</h2> */}
+      {/* <p>Add a new recipe here.</p> */}
       {errorMessage && (
         <div className="add-recipe-error" role="alert">
           {errorMessage}
@@ -76,20 +76,24 @@ function AddNewRecipe() {
           {successMessage}
         </div>
       )}
-      <div>
+      <div className="form-group recipe-name-field">
         <label htmlFor="recipe-name">Name</label>
         <input
           id="recipe-name"
           type="text"
+          className="recipe-name-input"
+          placeholder="Enter recipe name"
           value={NewRecipe.Name ?? ''}
           onChange={(e) => setNewRecipe((prev) => ({ ...prev, Name: e.target.value }))}
         />
       </div>
-      <div>
+      <div className="form-group recipe-name-field">
         <label htmlFor="recipe-author">Author</label>
         <input
           id="recipe-author"
           type="text"
+          className="recipe-name-input"
+          placeholder="Enter author name"
           value={NewRecipe.Author ?? ''}
           onChange={(e) => setNewRecipe((prev) => ({ ...prev, Author: e.target.value }))}
         />
@@ -97,28 +101,44 @@ function AddNewRecipe() {
       <div>
         <h3>Ingredients</h3>
         {ingredients.map((ingredient, index) => (
-          <div key={index}>
-            <label htmlFor={`ingredient-name-${index}`}>Name</label>
-            <input
-              id={`ingredient-name-${index}`}
-              type="text"
-              value={ingredient.Name ?? ''}
-              onChange={(e) => updateIngredient(index, 'Name', e.target.value)}
-            />
-            <label htmlFor={`ingredient-unit-${index}`}>Unit</label>
-            <input
-              id={`ingredient-unit-${index}`}
-              type="text"
-              value={ingredient.Unit ?? ''}
-              onChange={(e) => updateIngredient(index, 'Unit', e.target.value)}
-            />
-            <label htmlFor={`ingredient-amount-${index}`}>Amount</label>
-            <input
-              id={`ingredient-amount-${index}`}
-              type="text"
-              value={ingredient.Amount ?? ''}
-              onChange={(e) => updateIngredient(index, 'Amount', e.target.value)}
-            />
+          <div key={index} className="ingredient-row">
+            
+            <div className="form-group recipe-name-field">
+              <label htmlFor={`ingredient-name-${index}`}>Name</label>
+              <input
+                id={`ingredient-name-${index}`}
+                type="text"
+                className="recipe-name-input"
+                placeholder="Ingredient name"
+                value={ingredient.Name ?? ''}
+                onChange={(e) => updateIngredient(index, 'Name', e.target.value)}
+              />
+            </div>
+            
+            <div className="form-group recipe-name-field">
+              <label htmlFor={`ingredient-unit-${index}`}>Unit</label>
+              <input
+                id={`ingredient-unit-${index}`}
+                type="text"
+                className="recipe-name-input"
+                placeholder="e.g. cups, tbsp"
+                value={ingredient.Unit ?? ''}
+                onChange={(e) => updateIngredient(index, 'Unit', e.target.value)}
+              />
+            </div>
+            
+            <div className="form-group recipe-name-field">
+              <label htmlFor={`ingredient-amount-${index}`}>Amount</label>
+              <input
+                id={`ingredient-amount-${index}`}
+                type="text"
+                className="recipe-name-input"
+                placeholder="e.g. 2, 1/2"
+                value={ingredient.Amount ?? ''}
+                onChange={(e) => updateIngredient(index, 'Amount', e.target.value)}
+              />
+            </div>
+          
           </div>
         ))}
         <button type="button" className="add-ingredient-btn" onClick={addIngredient}>
@@ -128,21 +148,32 @@ function AddNewRecipe() {
       <div>
         <h3>Instructions</h3>
         {instructions.map((instruction, index) => (
-          <div key={index}>
-            <label htmlFor={`instruction-text-${index}`}>Text</label>
-            <input
-              id={`instruction-text-${index}`}
-              type="text"
-              value={instruction.Text ?? ''}
-              onChange={(e) => updateInstruction(index, 'Text', e.target.value)}
-            />
-            <label htmlFor={`instruction-order-${index}`}>Order</label>
-            <input
-              id={`instruction-order-${index}`}
-              type="text"
-              value={instruction.Order ?? ''}
-              onChange={(e) => updateInstruction(index, 'Order', e.target.value)}
-            />
+          <div key={index} className="ingredient-row">
+            
+            {/* <div className="form-group recipe-name-field"> */}
+              <label htmlFor={`instruction-text-${index}`}>Text</label>
+              <input
+                id={`instruction-text-${index}`}
+                type="text"
+                className="recipe-name-input"
+                placeholder="the instructions to follow..."
+                value={instruction.Text ?? ''}
+                onChange={(e) => updateInstruction(index, 'Text', e.target.value)}
+              />
+            {/* </div> */}
+
+            {/* <div className="form-group recipe-name-field"> */}
+              <label htmlFor={`instruction-order-${index}`}>Order</label>
+              <input
+                id={`instruction-order-${index}`}
+                type="text"
+                className="recipe-name-input"
+                placeholder="1, first instruction to follow..."
+                value={instruction.Order ?? ''}
+                onChange={(e) => updateInstruction(index, 'Order', e.target.value)}
+                />
+            {/* </div> */}
+
           </div>
         ))}
         <button type="button" className="add-ingredient-btn" onClick={addInstruction}>

@@ -262,6 +262,39 @@ pinky ice cream palette
   margin-bottom: 1rem;
 }
 
+.recipe-name-field {
+  margin-bottom: 1rem;
+}
+
+.recipe-name-input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--lavender);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-family: inherit;
+  /* background: var(--vanilla); */
+  color: var(--dark-dusty-rose);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.recipe-name-input:focus {
+  outline: none;
+  border-color: var(--plush-light-medium-pink);
+  box-shadow: 0 0 0 2px rgba(219, 175, 193, 0.3);
+}
+
+.recipe-name-input::placeholder {
+  color: var(--dull-blush);
+}
+
+.ingredient-row {
+  margin-bottom: 1.25rem;
+}
+
+.ingredient-row .form-group {
+  margin-bottom: 0.75rem;
+}
+
 .confirmation-message {
   padding: 1rem;
   background: var(--minty-ice-cream);
