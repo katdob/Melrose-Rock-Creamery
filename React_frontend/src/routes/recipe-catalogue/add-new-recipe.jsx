@@ -150,7 +150,8 @@ function AddNewRecipe() {
         {instructions.map((instruction, index) => (
           <div key={index} className="ingredient-row">
             
-            {/* <div className="form-group recipe-name-field"> */}
+            {/* the AI failed several times to tell me why these form-group divs were shrinking the width, so I fixed it myself  */}
+            <div className="form-group recipe-name-field" style={{ width: '100%', minWidth: '35rem' }}>
               <label htmlFor={`instruction-text-${index}`}>Text</label>
               <input
                 id={`instruction-text-${index}`}
@@ -160,9 +161,9 @@ function AddNewRecipe() {
                 value={instruction.Text ?? ''}
                 onChange={(e) => updateInstruction(index, 'Text', e.target.value)}
               />
-            {/* </div> */}
+            </div>
 
-            {/* <div className="form-group recipe-name-field"> */}
+            <div className="form-group recipe-name-field" style={{ width: '100%', minWidth: '35rem' }}>
               <label htmlFor={`instruction-order-${index}`}>Order</label>
               <input
                 id={`instruction-order-${index}`}
@@ -172,7 +173,7 @@ function AddNewRecipe() {
                 value={instruction.Order ?? ''}
                 onChange={(e) => updateInstruction(index, 'Order', e.target.value)}
                 />
-            {/* </div> */}
+            </div>
 
           </div>
         ))}
@@ -181,7 +182,8 @@ function AddNewRecipe() {
         </button>
       </div>
       <div className="add-recipe-btn-wrap">
-        <button type="button" className="add-ingredient-btn" onClick={handleAddRecipe}>
+        {/* the AI failed to "make the button bigger" in a reasonable way, so I did this myself */}
+        <button type="button" className="add-ingredient-btn" onClick={handleAddRecipe} style={{ fontSize: '1.5rem' }}>
           Add new recipe
         </button>
       </div>
