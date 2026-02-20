@@ -52,6 +52,7 @@ app.MapFirstApi();
 app.MapGetRecipes();
 app.MapGetRecipe();
 app.MapPostRecipe();
+app.MapPostFindRecipe();
 app.MapPostRecipeIngredients();
 app.MapGetIngredient();
 app.MapPostIngredient();

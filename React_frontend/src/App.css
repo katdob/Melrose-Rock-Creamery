@@ -133,6 +133,86 @@ pinky ice cream palette
   margin-top: 15rem;
 }
 
+.recipe-catalogue-search-wrap {
+  position: relative;
+  max-width: 38rem;
+  margin: 1rem auto 0;
+}
+
+.recipe-catalogue-search-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.recipe-catalogue-search-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.recipe-catalogue-search-btn {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.recipe-search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.25rem;
+  background: white;
+  border: 1px solid var(--lavender);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.recipe-search-dropdown-scroll {
+  max-height: 16rem;
+  overflow-y: auto;
+}
+
+.recipe-search-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  color: var(--dark-dusty-rose);
+  transition: background 0.15s;
+}
+
+.recipe-search-dropdown-item:hover {
+  background: var(--lavender);
+}
+
+.recipe-search-dropdown-item:not(.recipe-search-dropdown-message) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+
+.recipe-search-dropdown-name {
+  font-weight: 500;
+  color: var(--mild-hot-pink);
+}
+
+.recipe-search-dropdown-meta {
+  font-size: 0.875rem;
+  color: var(--dark-dusty-rose);
+}
+
+.recipe-search-dropdown-message {
+  color: var(--dark-dusty-rose);
+  cursor: default;
+}
+
 .about {
   max-width: 38rem;
   margin: 0 auto;
