@@ -243,6 +243,9 @@ COPY public."Ingredient" ("Id", "Name", "Unit", "Amount") FROM stdin;
 128	light corn syrup	tablespoon	1
 129	heavy cream	cup	0.33
 130	unsalted butter, cut into 1.2cm cubes	tablespoon	3
+131	water	cup	0.75
+132	granulated sugar	cup	1
+133	vanilla extract	teaspoon	0.5
 \.
 
 
@@ -376,19 +379,19 @@ COPY public."Instruction" ("Id", "Text", "Order", "RecipeId") FROM stdin;
 --
 
 COPY public."Recipe" ("Id", "Name", "Author", "CreatedDate", "IngredientList") FROM stdin;
-9	Fresh Mint and Chocolate Cookies Ice Cream	Cuisinart	2024-01-01 00:00:00+00	\N
-10	Mexican-Style Chocolate Ice Cream	Cuisinart	2024-01-01 00:00:00+00	\N
-11	Salted Caramel Ice Cream	Cuisinart	2024-01-01 00:00:00+00	\N
-12	Dark Chocolate Sorbet	Cuisinart	2024-01-01 00:00:00+00	\N
-13	Grapefruit and Prosecco Sorbet	Cuisinart	2024-01-01 00:00:00+00	\N
-14	Dairy-Free Vanilla Ice Cream	Cuisinart	2024-01-01 00:00:00+00	\N
-15	Coconut-Chocolate Ice Cream	Cuisinart	2024-01-01 00:00:00+00	\N
-16	Rich Vanilla Frozen Yogurt	Cuisinart	2024-01-01 00:00:00+00	\N
-17	Mango Frozen Yogurt	Cuisinart	2024-01-01 00:00:00+00	\N
-18	Chocolate-Pretzel Frozen Yogurt	Cuisinart	2024-01-01 00:00:00+00	\N
-19	Chocolate-Hazelnut Gelato	Cuisinart	2024-01-01 00:00:00+00	\N
-20	Espresso Gelato	Cuisinart	2024-01-01 00:00:00+00	\N
-21	Custard Gelato	Cuisinart	2024-01-01 00:00:00+00	\N
+9	Fresh Mint and Chocolate Cookies Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{4,41,42,3,9,49,44,51}
+10	Mexican-Style Chocolate Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{45,52,53,48,54,55,3,50, 56}
+11	Salted Caramel Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{57,58,59,3,9,60,61,62,63,64,65,66}
+12	Dark Chocolate Sorbet	Cuisinart	2024-01-01 00:00:00+00	{67,68,3,69,85}
+13	Grapefruit and Prosecco Sorbet	Cuisinart	2024-01-01 00:00:00+00	{131,2,72,3,73,74}
+14	Dairy-Free Vanilla Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{75,76,86,3,48}
+15	Coconut-Chocolate Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{6,71,79,3,80,48}
+16	Rich Vanilla Frozen Yogurt	Cuisinart	2024-01-01 00:00:00+00	{81,82,83,84,85,86,3}
+17	Mango Frozen Yogurt	Cuisinart	2024-01-01 00:00:00+00	{87,7,3,89,90}
+18	Chocolate-Pretzel Frozen Yogurt	Cuisinart	2024-01-01 00:00:00+00	{87,92,2,94,3,133,95}
+19	Chocolate-Hazelnut Gelato	Cuisinart	2024-01-01 00:00:00+00	{96,97,88,98,3,99,100}
+20	Espresso Gelato	Cuisinart	2024-01-01 00:00:00+00	{101,115,102,132,98,3,103}
+21	Custard Gelato	Cuisinart	2024-01-01 00:00:00+00	{101,115,114,116,98,117,2}
 1	Simple Vanilla Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{1,2,3,4,5}
 2	Simple Chocolate Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{6,7,8,1,3,4,9}
 3	Butter Pecan Ice Cream	Cuisinart	2024-01-01 00:00:00+00	{10,11,12,1,2,3,4,5}
