@@ -5,6 +5,6 @@ ENV POSTGRES_DB=MRC_DB
 ENV POSTGRES_USER=mrc_user
 ENV POSTGRES_PASSWORD=passpass
 
-COPY 26Feb2026_again.sql /docker-entrypoint-initdb.d
+COPY 26Feb2026_again_all_instructions.sql /docker-entrypoint-initdb.d
 
 EXPOSE 5432
