@@ -50,6 +50,8 @@ const NewsletterPopup = ({ onClose }) => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    onInvalid={(e) => e.target.setCustomValidity('Please enter your name.')}
+                    onInput={(e) => e.target.setCustomValidity('')}
                   />
                 </div>
                 <div className="popup-form-group">
@@ -61,6 +63,8 @@ const NewsletterPopup = ({ onClose }) => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    onInvalid={(e) => e.target.setCustomValidity('Please enter your email.')}
+                    onInput={(e) => e.target.setCustomValidity('')}
                   />
                 </div>
                 <button type="submit" className="popup-submit">Sign Up</button>

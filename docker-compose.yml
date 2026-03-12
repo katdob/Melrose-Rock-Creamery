@@ -56,6 +56,18 @@ services:
       - frontend-backend-network
     restart: unless-stopped
 
+  # React Frontend – run all Vite tests
+  react-frontend-tests:
+    build:
+      context: ./React_frontend
+      dockerfile: Dockerfile.test
+    container_name: react-frontend-tests
+    command: ["npm", "run", "test:run"]
+    networks:
+      - frontend-backend-network
+    profiles:
+      - test
+
 # Networks
 networks:
   backend-db-network:
