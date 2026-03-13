@@ -41,6 +41,8 @@ const Contact = () => {
             name="name"
             value={formData.name}
             onChange={handleChange}
+            onInvalid={(e) => e.target.setCustomValidity('Please enter your name')}
+            onInput={(e) => e.target.setCustomValidity('')}
             required
           />
         </div>
@@ -52,6 +54,8 @@ const Contact = () => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            onInvalid={(e) => e.target.setCustomValidity('Please enter your email')}
+            onInput={(e) => e.target.setCustomValidity('')}
             required
           />
         </div>
@@ -62,6 +66,8 @@ const Contact = () => {
             name="message"
             value={formData.message}
             onChange={handleChange}
+            onInvalid={(e) => e.target.setCustomValidity('Please complete your message to our team.')}
+            onInput={(e) => e.target.setCustomValidity('')}
             maxLength={500}
             rows={5}
             required

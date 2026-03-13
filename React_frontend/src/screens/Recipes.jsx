@@ -20,7 +20,7 @@ const Recipes = () => {
 
         <hr className="recipe-separator" />
 
-        <h2>Simple Vanilla Ice Cream</h2>
+        <h2 id="recipe-1">Simple Vanilla Ice Cream</h2>
         
         <p className="recipe-intro">
           This ice cream can easily be dressed up by adding your favorite chopped candies or 

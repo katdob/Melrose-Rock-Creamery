@@ -13,6 +13,9 @@ RUN npm ci
 # Copy source code
 COPY . .
 
+# Run tests (fails the build if tests fail)
+RUN npm run test:run
+
 # Build the application
 RUN npm run build
 
