@@ -42,6 +42,19 @@ services:
       - frontend-backend-network
     restart: unless-stopped
 
+  # C# .NET Backend – run all .NET tests after build
+  csharp-backend-tests:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    container_name: csharp-backend-tests
+    working_dir: /src
+    volumes:
+      - ./CSharp_dotNET_backend:/src
+    command: ["dotnet", "test", "Tests/Csharp_dotNET_backend.Tests.csproj"]
+    depends_on:
+      - csharp-backend
+    profiles:
+      - dotnet-tests
+
   # React Frontend Service
   react-frontend:
     build:

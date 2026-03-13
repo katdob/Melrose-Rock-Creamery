@@ -7,6 +7,4 @@ public class Recipe
     public string Author { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
     public int[]? IngredientList { get; set; }
-    public List<Ingredient> Ingredients { get; set; } = new();
-    public List<Instruction> Instructions { get; set; } = new();
 }
