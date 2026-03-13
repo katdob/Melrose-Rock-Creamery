@@ -52,8 +52,6 @@ services:
     command: ["dotnet", "test", "Tests/Csharp_dotNET_backend.Tests.csproj"]
     depends_on:
       - csharp-backend
-    profiles:
-      - dotnet-tests
 
   # React Frontend Service
   react-frontend:
