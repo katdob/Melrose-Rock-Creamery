@@ -8,6 +8,7 @@ RUN dotnet restore MRC_API/MRC_API.csproj
 
 # Copy MRC_API source and build
 COPY MRC_API/ MRC_API/
+# error here! 
 RUN dotnet publish MRC_API/MRC_API.csproj -c Release -o /app/publish /p:UseAppHost=false
 
 # Runtime stage (ASP.NET Core)

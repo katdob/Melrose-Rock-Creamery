@@ -48,7 +48,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapFirstApi();
 app.MapGetRecipes();
 app.MapGetRecipe();
 app.MapPostRecipe();

@@ -20,7 +20,6 @@ public class MRCDbContext : DbContext
             e.Property(x => x.Name).HasMaxLength(200);
             e.Property(x => x.Author).HasMaxLength(100);
             e.Property(x => x.IngredientList);
-            e.Ignore(x => x.Ingredients);
         });
 
         modelBuilder.Entity<Ingredient>(e =>
