@@ -17,12 +17,13 @@ function App() {
       {showPopup && <NewsletterPopup onClose={() => setShowPopup(false)} />}
       <div className="top-inline">
         <img 
+          id="ice-cream-cone-icon"
           src={IceCream} 
           alt="Ice Cream" 
           style={{ height: '10rem', width: '10rem' }} 
         />
         <div className="header-with-underline">
-          <h1>Melrose Rock Creamery</h1>
+          <h1 id="MRC-header">Melrose Rock Creamery</h1>
           <span className="h1-underline" aria-hidden="true" />
         </div>
       </div>

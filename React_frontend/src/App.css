@@ -678,7 +678,8 @@ a.highlight-link:hover {
 
 .popup-submit {
   padding: 0.75rem 1.5rem;
-  background: var(--plush-light-medium-pink);
+  /* background: var(--plush-light-medium-pink); */
+  background-color: var(--plush-light-medium-pink);
   color: white;
   border: none;
   border-radius: 4px;
@@ -690,7 +691,8 @@ a.highlight-link:hover {
 }
 
 .popup-submit:hover {
-  background: var(--dark-dusty-rose);
+  /* background: var(--dark-dusty-rose); */
+  background-color: var(--dark-dusty-rose);
 }
 
 .popup-success {
