@@ -5,3 +5,4 @@ export const Route = createFileRoute('/_main/')({
     throw redirect({ to: '/menu' })
   },
 })
+

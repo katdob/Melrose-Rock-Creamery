@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
-import { useNewRecipe } from '../../context/NewRecipeContext.ts'
-import { postRecipe } from '../../api_calls/POSTRecipe.ts'
-import { postIngredient } from '../../api_calls/POSTIngredient.ts'
-import { postInstruction } from '../../api_calls/POSTInstructions.ts'
+import { useNewRecipe } from '../context/NewRecipeContext.ts'
+import { postRecipe } from '../api_calls/POSTRecipe.ts'
+import { postIngredient } from '../api_calls/POSTIngredient.ts'
+import { postInstruction } from '../api_calls/POSTInstructions.ts'
 
-function AddNewRecipe() {
+export default function AddNewRecipe() {
   const { NewRecipe, setNewRecipe } = useNewRecipe()
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
@@ -16,7 +15,10 @@ function AddNewRecipe() {
   const addIngredient = () => {
     setNewRecipe((prev) => ({
       ...prev,
-      Ingredients: [...(prev.Ingredients ?? [{ Name: '', Unit: '', Amount: '' }]), { Name: '', Unit: '', Amount: '' }],
+      Ingredients: [
+        ...(prev.Ingredients ?? [{ Name: '', Unit: '', Amount: '' }]),
+        { Name: '', Unit: '', Amount: '' },
+      ],
     }))
   }
 
@@ -31,7 +33,10 @@ function AddNewRecipe() {
   const addInstruction = () => {
     setNewRecipe((prev) => ({
       ...prev,
-      Instructions: [...(prev.Instructions ?? [{ Text: '', Order: '', RecipeId: null }]), { Text: '', Order: '', RecipeId: prev.RecipeId ?? null }],
+      Instructions: [
+        ...(prev.Instructions ?? [{ Text: '', Order: '', RecipeId: null }]),
+        { Text: '', Order: '', RecipeId: prev.RecipeId ?? null },
+      ],
     }))
   }
 
@@ -59,10 +64,12 @@ function AddNewRecipe() {
     if (!NewRecipe.Instructions || NewRecipe.Instructions.length === 0) {
       errors.push('At least one instruction is required.')
     }
+
     if (errors.length > 0) {
       setErrorMessage(errors.join(' '))
       return
     }
+
     try {
       const created = await postRecipe(NewRecipe.Name.trim(), NewRecipe.Author.trim())
       const recipeId = created.id
@@ -71,13 +78,10 @@ function AddNewRecipe() {
       const ingredients = NewRecipe.Ingredients ?? []
       const results = await Promise.all(
         ingredients.map((ing) =>
-          postIngredient(
-            String(ing.Name ?? '').trim(),
-            String(ing.Unit ?? '').trim(),
-            Number(ing.Amount) || 0
-          )
-        )
+          postIngredient(String(ing.Name ?? '').trim(), String(ing.Unit ?? '').trim(), Number(ing.Amount) || 0),
+        ),
       )
+
       const ingredientsWithIds = ingredients.map((ing, i) => ({
         ...ing,
         IngredientId: results[i]?.id ?? null,
@@ -87,12 +91,8 @@ function AddNewRecipe() {
       const instructions = NewRecipe.Instructions ?? []
       await Promise.all(
         instructions.map((inst) =>
-          postInstruction(
-            String(inst.Text ?? '').trim(),
-            Number(inst.Order) || 0,
-            recipeId
-          )
-        )
+          postInstruction(String(inst.Text ?? '').trim(), Number(inst.Order) || 0, recipeId),
+        ),
       )
 
       setSuccessMessage(`Recipe "${created.name}" was added.`)
@@ -109,29 +109,43 @@ function AddNewRecipe() {
           <div className="popup-container recipe-created-popup">
             <div className="popup-content recipe-created-popup-content">
               <h2 id="recipe-created-title">Recipe created</h2>
-              <p><strong>Name:</strong> {NewRecipe.Name}</p>
-              <p><strong>Author:</strong> {NewRecipe.Author}</p>
+              <p>
+                <strong>Name:</strong> {NewRecipe.Name}
+              </p>
+              <p>
+                <strong>Author:</strong> {NewRecipe.Author}
+              </p>
               <h3>Ingredients</h3>
               <ul className="recipe-created-list">
                 {(NewRecipe.Ingredients ?? []).map((ing, i) => (
-                  <li key={i}>{ing.Name} — {ing.Unit} {ing.Amount}</li>
+                  <li key={i}>
+                    {ing.Name} — {ing.Unit} {ing.Amount}
+                  </li>
                 ))}
               </ul>
               <h3>Instructions</h3>
               <ul className="recipe-created-list">
                 {(NewRecipe.Instructions ?? []).map((inst, i) => (
-                  <li key={i}>{inst.Order}. {inst.Text}</li>
+                  <li key={i}>
+                    {inst.Order}. {inst.Text}
+                  </li>
                 ))}
               </ul>
-              <button type="button" className="add-ingredient-btn" onClick={() => setShowSuccessPopup(false)}>
+              <button
+                type="button"
+                className="add-ingredient-btn"
+                onClick={() => setShowSuccessPopup(false)}
+              >
                 OK
               </button>
             </div>
           </div>
         </div>
       )}
-       {/* <h2>Add new recipe</h2> */}
+
+      {/* <h2>Add new recipe</h2> */}
       {/* <p>Add a new recipe here.</p> */}
+
       {errorMessage && (
         <div className="add-recipe-error" role="alert">
           {errorMessage}
@@ -142,6 +156,7 @@ function AddNewRecipe() {
           {successMessage}
         </div>
       )}
+
       <div className="form-group recipe-name-field">
         <label htmlFor="recipe-name">Name</label>
         <input
@@ -153,6 +168,7 @@ function AddNewRecipe() {
           onChange={(e) => setNewRecipe((prev) => ({ ...prev, Name: e.target.value }))}
         />
       </div>
+
       <div className="form-group recipe-name-field">
         <label htmlFor="recipe-author">Author</label>
         <input
@@ -164,11 +180,11 @@ function AddNewRecipe() {
           onChange={(e) => setNewRecipe((prev) => ({ ...prev, Author: e.target.value }))}
         />
       </div>
+
       <div>
         <h3>Ingredients</h3>
         {ingredients.map((ingredient, index) => (
           <div key={index} className="ingredient-row">
-            
             <div className="form-group recipe-name-field">
               <label htmlFor={`ingredient-name-${index}`}>Name</label>
               <input
@@ -180,7 +196,7 @@ function AddNewRecipe() {
                 onChange={(e) => updateIngredient(index, 'Name', e.target.value)}
               />
             </div>
-            
+
             <div className="form-group recipe-name-field">
               <label htmlFor={`ingredient-unit-${index}`}>Unit</label>
               <input
@@ -192,7 +208,7 @@ function AddNewRecipe() {
                 onChange={(e) => updateIngredient(index, 'Unit', e.target.value)}
               />
             </div>
-            
+
             <div className="form-group recipe-name-field">
               <label htmlFor={`ingredient-amount-${index}`}>Amount</label>
               <input
@@ -204,18 +220,18 @@ function AddNewRecipe() {
                 onChange={(e) => updateIngredient(index, 'Amount', e.target.value)}
               />
             </div>
-          
           </div>
         ))}
+
         <button type="button" className="add-ingredient-btn" onClick={addIngredient}>
           Add another ingredient
         </button>
       </div>
+
       <div>
         <h3>Instructions</h3>
         {instructions.map((instruction, index) => (
           <div key={index} className="ingredient-row">
-            
             {/* the AI failed several times to tell me why these form-group divs were shrinking the width, so I fixed it myself  */}
             <div className="form-group recipe-name-field" style={{ width: '100%', minWidth: '35rem' }}>
               <label htmlFor={`instruction-text-${index}`}>Text</label>
@@ -238,18 +254,24 @@ function AddNewRecipe() {
                 placeholder="1, first instruction to follow..."
                 value={instruction.Order ?? ''}
                 onChange={(e) => updateInstruction(index, 'Order', e.target.value)}
-                />
+              />
             </div>
-
           </div>
         ))}
+
         <button type="button" className="add-ingredient-btn" onClick={addInstruction}>
           Add another instruction
         </button>
       </div>
+
       <div className="add-recipe-btn-wrap">
         {/* the AI failed to "make the button bigger" in a reasonable way, so I did this myself */}
-        <button type="button" className="add-ingredient-btn" onClick={handleAddRecipe} style={{ fontSize: '1.5rem' }}>
+        <button
+          type="button"
+          className="add-ingredient-btn"
+          onClick={handleAddRecipe}
+          style={{ fontSize: '1.5rem' }}
+        >
           Add new recipe
         </button>
       </div>
@@ -257,6 +279,3 @@ function AddNewRecipe() {
   )
 }
 
-export const Route = createFileRoute('/recipe-catalogue/add-new-recipe')({
-  component: AddNewRecipe,
-})

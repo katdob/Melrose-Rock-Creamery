@@ -5,3 +5,4 @@ export const Route = createFileRoute('/recipe-catalogue/')({
     throw redirect({ to: '/recipe-catalogue/my-recipes' })
   },
 })
+

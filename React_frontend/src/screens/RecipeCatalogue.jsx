@@ -56,13 +56,25 @@ const RecipeCatalogue = () => {
         </div>
       </div>
       <div className="tabs">
-        <Link to="/recipe-catalogue/add-new-recipe" activeProps={{ className: 'tab tab--active' }} inactiveProps={{ className: 'tab' }}>
+        <Link
+          to="/recipe-catalogue/add-new-recipe"
+          activeProps={{ className: 'tab tab--active' }}
+          inactiveProps={{ className: 'tab' }}
+        >
           Add new recipe
         </Link>
-        <Link to="/recipe-catalogue/my-recipes" activeProps={{ className: 'tab tab--active' }} inactiveProps={{ className: 'tab' }}>
+        <Link
+          to="/recipe-catalogue/my-recipes"
+          activeProps={{ className: 'tab tab--active' }}
+          inactiveProps={{ className: 'tab' }}
+        >
           My recipes
         </Link>
-        <Link to="/recipe-catalogue/catalogue" activeProps={{ className: 'tab tab--active' }} inactiveProps={{ className: 'tab' }}>
+        <Link
+          to="/recipe-catalogue/catalogue"
+          activeProps={{ className: 'tab tab--active' }}
+          inactiveProps={{ className: 'tab' }}
+        >
           Catalogue
         </Link>
       </div>
@@ -90,9 +102,13 @@ const RecipeCatalogue = () => {
             role="listbox"
           >
             {searching ? (
-              <div className="recipe-search-dropdown-item recipe-search-dropdown-message">Searching...</div>
+              <div className="recipe-search-dropdown-item recipe-search-dropdown-message">
+                Searching...
+              </div>
             ) : searchResults.length === 0 ? (
-              <div className="recipe-search-dropdown-item recipe-search-dropdown-message">No recipes found</div>
+              <div className="recipe-search-dropdown-item recipe-search-dropdown-message">
+                No recipes found
+              </div>
             ) : (
               <div className="recipe-search-dropdown-scroll">
                 {searchResults.map((recipe) => (
@@ -124,3 +140,4 @@ const RecipeCatalogue = () => {
 }
 
 export default RecipeCatalogue
+

@@ -4,3 +4,4 @@ import Recipes from '../../screens/Recipes'
 export const Route = createFileRoute('/_main/recipes')({
   component: Recipes,
 })
+
