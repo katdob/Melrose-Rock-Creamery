@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
-import { useNewRecipe } from '../../context/NewRecipeContext'
-import { postRecipe } from '../../api_calls/POSTRecipe'
-import { postIngredient } from '../../api_calls/POSTIngredient'
-import { postInstruction } from '../../api_calls/POSTInstructions'
+import { useNewRecipe } from '../../context/NewRecipeContext.ts'
+import { postRecipe } from '../../api_calls/POSTRecipe.ts'
+import { postIngredient } from '../../api_calls/POSTIngredient.ts'
+import { postInstruction } from '../../api_calls/POSTInstructions.ts'
 
 function AddNewRecipe() {
   const { NewRecipe, setNewRecipe } = useNewRecipe()

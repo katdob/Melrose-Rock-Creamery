@@ -5,7 +5,7 @@ import Membership from './screens/Membership'
 import Contact from './screens/Contact'
 import Recipes from './screens/Recipes'
 import Menu from './screens/Menu'
-import NewsletterPopup from './components/NewsletterPopup'
+import NewsletterPopup from './components/NewsletterPopup.ts'
 import './App.css'
 
 function App() {

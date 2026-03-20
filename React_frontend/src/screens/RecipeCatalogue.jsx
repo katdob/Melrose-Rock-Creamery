@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { Link, Outlet } from '@tanstack/react-router'
 import IceCream from '../assets/ice-cream.svg'
-import { NewRecipeProvider } from '../context/NewRecipeContext'
-import { postFindRecipe } from '../api_calls/POSTFindRecipe'
+import { NewRecipeProvider } from '../context/NewRecipeContext.ts'
+import { postFindRecipe } from '../api_calls/POSTFindRecipe.ts'
 import '../App.css'
 
 const RecipeCatalogue = () => {

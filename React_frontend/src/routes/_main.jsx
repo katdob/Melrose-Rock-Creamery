@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { createFileRoute, Link, Outlet } from '@tanstack/react-router'
 import IceCream from '../assets/ice-cream.svg'
-import NewsletterPopup from '../components/NewsletterPopup'
+import NewsletterPopup from '../components/NewsletterPopup.ts'
 import '../App.css'
 
 function MainLayout() {

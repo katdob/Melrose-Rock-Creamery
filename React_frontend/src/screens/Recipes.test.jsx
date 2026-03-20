@@ -3,8 +3,8 @@ import { render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
 import { routeTree } from '../routeTree.gen'
-import * as getRecipeModule from '../api_calls/GETRecipe'
-import * as getInstructionsModule from '../api_calls/GETInstructions'
+import * as getRecipeModule from '../api_calls/GETRecipe.ts'
+import * as getInstructionsModule from '../api_calls/GETInstructions.ts'
 
 const INTRO_TEXT =
   "Here's a free recipe to get you going! You can do this at home, with whatever 2 quart ice cream maker you like."
