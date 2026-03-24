@@ -32,7 +32,7 @@ public static class POSTFindRecipe
             if (matchingIngredientIds.Count > 0)
             {
                 recipeIdsByIngredient = await db.Recipes
-                    .Where(r => r.IngredientList != null && r.IngredientList.Intersect(matchingIngredientIds).Any())
+                    .Where(r => r.IngredientsList != null && r.IngredientsList.Intersect(matchingIngredientIds).Any())
                     .Select(r => r.Id)
                     .ToListAsync();
             }

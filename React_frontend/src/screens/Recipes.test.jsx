@@ -107,7 +107,7 @@ describe('Recipes tab section at /recipes', () => {
   })
 
   it('9. each ingredient from recipe is on the page as a bullet point', async () => {
-    const mockRecipe = { id: 1, name: 'Simple Vanilla Ice Cream', author: 'Cuisinart', IngredientList: [1, 2, 3, 4, 5] }
+    const mockRecipe = { id: 1, name: 'Simple Vanilla Ice Cream', author: 'Cuisinart', IngredientsList: [1, 2, 3, 4, 5] }
     vi.spyOn(getRecipeModule, 'getRecipe').mockResolvedValue(mockRecipe)
     const recipe = await getRecipeModule.getRecipe('Simple Vanilla Ice Cream', 'Cuisinart')
     expect(recipe).not.toBeNull()

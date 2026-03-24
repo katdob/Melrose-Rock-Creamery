@@ -6,5 +6,5 @@ public class Recipe
     public string Name { get; set; } = string.Empty;
     public string Author { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
-    public int[]? IngredientList { get; set; }
+    public int[]? IngredientsList { get; set; }
 }

@@ -12,10 +12,10 @@ public static class POSTRecipeIngredients
             if (recipe == null)
                 return Results.NotFound($"Recipe with id {recipeId} not found.");
 
-            recipe.IngredientList = request.IngredientIds ?? Array.Empty<int>();
+            recipe.IngredientsList = request.IngredientIds ?? Array.Empty<int>();
             await db.SaveChangesAsync();
 
-            return Results.Ok(new { recipeId, ingredientIds = recipe.IngredientList });
+            return Results.Ok(new { recipeId, ingredientIds = recipe.IngredientsList });
         })
             .WithName("PostRecipeIngredients");
 

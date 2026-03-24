@@ -35,7 +35,7 @@ public class RecipeTests : IDisposable
             Name = test_RecipeName,
             Author = test_Author,
             CreatedDate = test_DateTime,
-            IngredientList = new[] { 1 } // simulate including the ingredient in the list
+            IngredientsList = new[] { 1 } // simulate including the ingredient in the list
         };
     }
 
@@ -47,8 +47,8 @@ public class RecipeTests : IDisposable
         // 7. Look up the recipe and test it against the variables used to create it
         Assert.Equal(test_RecipeName, _recipeUnderTest!.Name);
         Assert.Equal(test_Author, _recipeUnderTest.Author);
-        Assert.NotNull(_recipeUnderTest.IngredientList);
-        Assert.Single(_recipeUnderTest.IngredientList!);
+        Assert.NotNull(_recipeUnderTest.IngredientsList);
+        Assert.Single(_recipeUnderTest.IngredientsList!);
     }
 
     [Fact]
