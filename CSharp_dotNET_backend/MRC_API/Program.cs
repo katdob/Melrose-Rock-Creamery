@@ -49,6 +49,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGetRecipes();
+app.MapGetSearchRecipes();
 app.MapGetRecipe();
 app.MapPostRecipe();
 app.MapPostFindRecipe();
