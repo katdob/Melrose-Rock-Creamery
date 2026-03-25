@@ -20,6 +20,7 @@ public class MRCDbContext : DbContext
             e.Property(x => x.Name).HasMaxLength(200);
             e.Property(x => x.Author).HasMaxLength(100);
             e.Property(x => x.IngredientsList).HasColumnName("IngredientList");
+            e.Property(x => x.Shareable).HasDefaultValue(false);
         });
 
         modelBuilder.Entity<Ingredient>(e =>

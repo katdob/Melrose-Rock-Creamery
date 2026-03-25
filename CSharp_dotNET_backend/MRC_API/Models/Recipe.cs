@@ -7,4 +7,5 @@ public class Recipe
     public string Author { get; set; } = string.Empty;
     public DateTime CreatedDate { get; set; }
     public int[]? IngredientsList { get; set; }
+    public bool Shareable { get; set; } = false;
 }
