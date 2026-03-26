@@ -3,15 +3,15 @@
  *
  * @param recipeId - Recipe ID
  * @param ingredientIds - Array of ingredient IDs
- * @param baseUrl - Optional API base URL (default: http://localhost:8080)
+ * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Updated recipe ingredients
  */
 export async function postRecipeIngredients(
   recipeId: number,
   ingredientIds: number[],
-  baseUrl: string = 'http://localhost:8080',
+  baseUrl: string = '',
 ): Promise<{ recipeId: number; ingredientIds: number[] }> {
-  const url = `${baseUrl}/recipes/${recipeId}/ingredients`;
+  const url = baseUrl ? `${baseUrl}/recipes/${recipeId}/ingredients` : `/recipes/${recipeId}/ingredients`;
 
   const response = await fetch(url, {
     method: 'POST',

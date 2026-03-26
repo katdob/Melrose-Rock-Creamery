@@ -3,16 +3,18 @@
  *
  * @param name - Recipe name
  * @param author - Recipe author
- * @param baseUrl - Optional API base URL (default: http://localhost:8080)
+ * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Recipe or null if not found (HTTP 404)
  */
 export async function getRecipe(
   name: string,
   author: string,
-  baseUrl: string = 'http://localhost:8080',
+  baseUrl: string = '',
 ): Promise<{ id: number; name: string; author: string; createdDate: string } | null> {
   const params = new URLSearchParams({ name, author });
-  const url = `${baseUrl}/recipes/by-name-author?${params}`;
+  const url = baseUrl
+    ? `${baseUrl}/recipes/by-name-author?${params}`
+    : `/recipes/by-name-author?${params}`;
 
   const response = await fetch(url);
 

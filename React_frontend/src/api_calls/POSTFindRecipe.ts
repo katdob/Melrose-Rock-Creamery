@@ -2,14 +2,14 @@
  * Finds recipes by partial match on name, author, or ingredient name.
  *
  * @param search - Search string
- * @param baseUrl - Optional API base URL (default: http://localhost:8080)
+ * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Matching recipes
  */
 export async function postFindRecipe(
   search: string,
-  baseUrl: string = 'http://localhost:8080',
+  baseUrl: string = '',
 ): Promise<Array<{ id: number; name: string; author: string; createdDate: string }>> {
-  const url = `${baseUrl}/recipes/find`
+  const url = baseUrl ? `${baseUrl}/recipes/find` : `/recipes/find`
 
   const response = await fetch(url, {
     method: 'POST',

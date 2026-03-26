@@ -4,16 +4,16 @@
  * @param name - Ingredient name
  * @param unit - Ingredient unit
  * @param amount - Ingredient amount
- * @param baseUrl - Optional API base URL (default: http://localhost:8080)
+ * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Created or existing ingredient
  */
 export async function postIngredient(
   name: string,
   unit: string,
   amount: number,
-  baseUrl: string = 'http://localhost:8080',
+  baseUrl: string = '',
 ): Promise<{ id: number; name: string; unit: string; amount: number }> {
-  const url = `${baseUrl}/ingredients`;
+  const url = baseUrl ? `${baseUrl}/ingredients` : `/ingredients`;
 
   const response = await fetch(url, {
     method: 'POST',

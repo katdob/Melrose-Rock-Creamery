@@ -3,15 +3,15 @@
  *
  * @param name - Recipe name
  * @param author - Recipe author
- * @param baseUrl - Optional API base URL (default: http://localhost:8080)
+ * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Created recipe
  */
 export async function postRecipe(
   name: string,
   author: string,
-  baseUrl: string = 'http://localhost:8080',
+  baseUrl: string = '',
 ): Promise<{ id: number; name: string; author: string; createdDate: string }> {
-  const url = `${baseUrl}/recipes`;
+  const url = baseUrl ? `${baseUrl}/recipes` : `/recipes`;
 
   const response = await fetch(url, {
     method: 'POST',

@@ -357,6 +357,16 @@ pinky ice cream palette
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
+.catalogue-search-input {
+  /* Override `recipe-name-input` border color to a darker pink. */
+  border: 1px solid var(--dark-dusty-rose);
+}
+
+.catalogue-search-input:focus {
+  border-color: var(--dark-dusty-rose);
+  box-shadow: 0 0 0 2px rgba(134, 98, 110, 0.25);
+}
+
 .recipe-name-input:focus {
   outline: none;
   border-color: var(--plush-light-medium-pink);
@@ -391,6 +401,11 @@ pinky ice cream palette
 .ingredients-list,
 .instructions-list {
   padding-left: 1.5rem;
+}
+
+.ingredients-list {
+  list-style: none;
+  padding-left: 0;
 }
 
 .ingredients-list li,

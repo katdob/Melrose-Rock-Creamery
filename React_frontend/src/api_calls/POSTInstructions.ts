@@ -4,16 +4,16 @@
  * @param text - Instruction text
  * @param order - Instruction order
  * @param recipeId - Recipe ID
- * @param baseUrl - Optional API base URL (default: http://localhost:8080)
+ * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Created instruction
  */
 export async function postInstruction(
   text: string,
   order: number,
   recipeId: number,
-  baseUrl: string = 'http://localhost:8080',
+  baseUrl: string = '',
 ): Promise<{ id: number; text: string; order: number; recipeId: number }> {
-  const url = `${baseUrl}/instructions`;
+  const url = baseUrl ? `${baseUrl}/instructions` : `/instructions`;
 
   const response = await fetch(url, {
     method: 'POST',
