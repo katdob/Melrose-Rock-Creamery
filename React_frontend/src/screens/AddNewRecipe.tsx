@@ -9,6 +9,7 @@ export default function AddNewRecipe() {
   const [errorMessage, setErrorMessage] = useState(null)
   const [successMessage, setSuccessMessage] = useState(null)
   const [showSuccessPopup, setShowSuccessPopup] = useState(false)
+  const [createdRecipePreview, setCreatedRecipePreview] = useState(null)
   const ingredients = NewRecipe.Ingredients ?? [{ Name: '', Unit: '', Amount: '' }]
   const instructions = NewRecipe.Instructions ?? [{ Text: '', Order: '', RecipeId: null }]
 
@@ -95,8 +96,22 @@ export default function AddNewRecipe() {
         ),
       )
 
+      setCreatedRecipePreview({
+        Name: NewRecipe.Name,
+        Author: NewRecipe.Author,
+        Ingredients: ingredientsWithIds,
+        Instructions: instructions,
+      })
       setSuccessMessage(`Recipe "${created.name}" was added.`)
       setShowSuccessPopup(true)
+      setNewRecipe({
+        Name: '',
+        Author: '',
+        Shareable: null,
+        RecipeId: null,
+        Ingredients: [{ Name: '', Unit: '', Amount: '' }],
+        Instructions: [{ Text: '', Order: '', RecipeId: null }],
+      })
     } catch (err) {
       setErrorMessage(err.message || 'Failed to add recipe.')
     }
@@ -110,14 +125,14 @@ export default function AddNewRecipe() {
             <div className="popup-content recipe-created-popup-content">
               <h2 id="recipe-created-title">Recipe created</h2>
               <p>
-                <strong>Name:</strong> {NewRecipe.Name}
+                <strong>Name:</strong> {createdRecipePreview?.Name}
               </p>
               <p>
-                <strong>Author:</strong> {NewRecipe.Author}
+                <strong>Author:</strong> {createdRecipePreview?.Author}
               </p>
               <h3>Ingredients</h3>
               <ul className="recipe-created-list">
-                {(NewRecipe.Ingredients ?? []).map((ing, i) => (
+                {(createdRecipePreview?.Ingredients ?? []).map((ing, i) => (
                   <li key={i}>
                     {ing.Name} — {ing.Unit} {ing.Amount}
                   </li>
@@ -125,7 +140,7 @@ export default function AddNewRecipe() {
               </ul>
               <h3>Instructions</h3>
               <ul className="recipe-created-list">
-                {(NewRecipe.Instructions ?? []).map((inst, i) => (
+                {(createdRecipePreview?.Instructions ?? []).map((inst, i) => (
                   <li key={i}>
                     {inst.Order}. {inst.Text}
                   </li>
@@ -262,6 +277,30 @@ export default function AddNewRecipe() {
         <button type="button" className="add-ingredient-btn" onClick={addInstruction}>
           Add another instruction
         </button>
+
+        <div className="form-group recipe-name-field" style={{ marginTop: '1rem' }}>
+          <p style={{ marginBottom: '0.5rem' }}>
+            Do you want to share this recipe with other users?
+          </p>
+          <label style={{ marginRight: '1rem' }}>
+            <input
+              type="checkbox"
+              checked={NewRecipe.Shareable === true}
+              onChange={() => setNewRecipe((prev) => ({ ...prev, Shareable: true }))}
+              style={{ marginRight: '0.35rem' }}
+            />
+            yes
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={NewRecipe.Shareable === false}
+              onChange={() => setNewRecipe((prev) => ({ ...prev, Shareable: false }))}
+              style={{ marginRight: '0.35rem' }}
+            />
+            no
+          </label>
+        </div>
       </div>
 
       <div className="add-recipe-btn-wrap">

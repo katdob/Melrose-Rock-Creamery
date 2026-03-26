@@ -3,14 +3,16 @@
  *
  * @param name - Recipe name
  * @param author - Recipe author
+ * @param shareable - Whether recipe is shareable
  * @param baseUrl - Optional API base URL (default: same-origin via nginx)
  * @returns Created recipe
  */
 export async function postRecipe(
   name: string,
   author: string,
+  shareable: boolean = false,
   baseUrl: string = '',
-): Promise<{ id: number; name: string; author: string; createdDate: string }> {
+): Promise<{ id: number; name: string; author: string; createdDate: string; shareable: boolean }> {
   const url = baseUrl ? `${baseUrl}/recipes` : `/recipes`;
 
   const response = await fetch(url, {
@@ -18,7 +20,7 @@ export async function postRecipe(
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, author }),
+    body: JSON.stringify({ name, author, shareable }),
   });
 
   if (!response.ok) {
@@ -30,4 +32,3 @@ export async function postRecipe(
 
   return response.json();
 }
-

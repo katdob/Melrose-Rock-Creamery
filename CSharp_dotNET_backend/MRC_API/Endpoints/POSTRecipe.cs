@@ -19,7 +19,8 @@ public static class POSTRecipe
             {
                 Name = request.Name.Trim(),
                 Author = request.Author.Trim(),
-                CreatedDate = DateTime.UtcNow
+                CreatedDate = DateTime.UtcNow,
+                Shareable = request.Shareable ?? false
             };
 
             db.Recipes.Add(recipe);
@@ -39,7 +40,14 @@ public static class POSTRecipe
                 await db.SaveChangesAsync();
             }
 
-            return Results.Created($"/recipes/{recipe.Id}", new { id = recipe.Id, name = recipe.Name, author = recipe.Author, createdDate = recipe.CreatedDate });
+            return Results.Created($"/recipes/{recipe.Id}", new
+            {
+                id = recipe.Id,
+                name = recipe.Name,
+                author = recipe.Author,
+                createdDate = recipe.CreatedDate,
+                shareable = recipe.Shareable
+            });
         })
             .WithName("PostRecipe");
 
@@ -50,6 +58,7 @@ public static class POSTRecipe
 internal record CreateRecipeRequest(
     string Name,
     string Author,
+    bool? Shareable,
     List<CreateInstructionRequest>? Instructions
 );
 

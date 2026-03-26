@@ -746,7 +746,12 @@ a.highlight-link:hover {
 .recipe-created-list {
   margin: 0 0 0 1rem;
   padding-left: 1rem;
+  list-style-type: disc;
   color: var(--dark-dusty-rose);
+}
+
+.recipe-created-list input[type='checkbox'] {
+  display: none;
 }
 
 .recipe-created-popup-content .add-ingredient-btn {

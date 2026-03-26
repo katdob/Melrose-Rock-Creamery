@@ -16,6 +16,7 @@ type Instruction = {
 type NewRecipe = {
   Name?: string;
   Author?: string;
+  Shareable?: boolean | null;
   RecipeId?: number | null;
   Ingredients: Ingredient[];
   Instructions: Instruction[];
@@ -30,6 +31,7 @@ const NewRecipeContext = createContext<NewRecipeContextValue | null>(null);
 
 export function NewRecipeProvider({ children }: { children: React.ReactNode }) {
   const [NewRecipe, setNewRecipe] = useState<NewRecipe>({
+    Shareable: null,
     Ingredients: [{ Name: '', Unit: '', Amount: '' }],
     Instructions: [{ Text: '', Order: '', RecipeId: null }],
   });
