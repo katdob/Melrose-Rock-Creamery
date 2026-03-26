@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
 import { getSearchRecipes, type SearchRecipe } from '../../api_calls/GETSearchRecipes.ts'
+import { getRecipes } from '../../api_calls/GETRecipes.ts'
 
 function Catalogue(): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState('')
@@ -58,12 +59,18 @@ function Catalogue(): React.ReactElement {
   }
 
   const loadPage = async (term: string, page: number) => {
+    const trimmedTerm = (term ?? '').trim()
     setSearching(true)
     try {
-      const data = await getSearchRecipes(term, page)
-      setSearchResults(data?.results ?? [])
+      if (trimmedTerm) {
+        const data = await getSearchRecipes(trimmedTerm, page)
+        setSearchResults(data?.results ?? [])
+      } else {
+        const data = await getRecipes(page)
+        setSearchResults(data ?? [])
+      }
       setCurrentPage(page)
-      setActiveSearchTerm(term)
+      setActiveSearchTerm(trimmedTerm)
     } catch {
       setSearchResults([])
     } finally {
@@ -74,21 +81,23 @@ function Catalogue(): React.ReactElement {
   const handleSearch = async () => {
     const q = (searchQuery ?? '').trim()
     if (!q) {
-      setSearchResults([])
-      setActiveSearchTerm('')
-      setCurrentPage(1)
+      await loadPage('', 1)
       return
     }
 
     await loadPage(q, 1)
   }
 
+  useEffect(() => {
+    void loadPage('', 1)
+  }, [])
+
   const hasNextPage = searchResults.length === pageSize
 
   return React.createElement(
     'div',
     { className: 'content-scroll', style: { width: '40rem', height: 'auto', marginTop: '-5rem' } },
-    React.createElement('h2', null, 'Search for a Recipe!'),
+    React.createElement('h3', null, 'Search for a Recipe!'),
     React.createElement(
       'form',
       {
@@ -303,12 +312,11 @@ function Catalogue(): React.ReactElement {
         ),
       ),
     !searching &&
-      activeSearchTerm &&
       searchResults.length === 0 &&
       React.createElement(
         'div',
         { style: { marginTop: '0.75rem', color: 'var(--dark-dusty-rose)' } },
-        currentPage > 1 ? 'No results on this page.' : 'No recipes found.',
+        currentPage > 1 ? 'No results on this page.' : activeSearchTerm ? 'No recipes found.' : 'No recipes available.',
       ),
   )
 }
