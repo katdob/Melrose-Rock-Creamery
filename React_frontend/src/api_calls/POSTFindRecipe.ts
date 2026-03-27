@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Finds recipes by partial match on name, author, or ingredient name.
  *
@@ -11,7 +13,7 @@ export async function postFindRecipe(
 ): Promise<Array<{ id: number; name: string; author: string; createdDate: string }>> {
   const url = baseUrl ? `${baseUrl}/recipes/find` : `/recipes/find`
 
-  const response = await fetch(url, {
+  const response = await authorizedFetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

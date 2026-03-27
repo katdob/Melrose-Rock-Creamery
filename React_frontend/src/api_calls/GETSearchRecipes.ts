@@ -1,3 +1,4 @@
+import { authorizedFetch } from './auth.ts'
 export type SearchRecipeIngredient = {
   id: number;
   name: string | null;
@@ -46,7 +47,7 @@ export async function getSearchRecipes(
   const path = `/recipes/search?${params.toString()}`;
   const url = baseUrl ? `${baseUrl}${path}` : path;
 
-  const response = await fetch(url);
+  const response = await authorizedFetch(url);
   if (!response.ok) {
     const errorText = await response.text();
     throw new Error(

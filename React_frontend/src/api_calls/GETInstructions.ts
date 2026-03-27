@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Fetches all instructions for a recipe from the API.
  *
@@ -11,7 +13,7 @@ export async function getInstructions(
 ): Promise<Array<{ order: number; instruction: string }> | null> {
   const url = baseUrl ? `${baseUrl}/recipes/${recipeId}/instructions` : `/recipes/${recipeId}/instructions`;
 
-  const response = await fetch(url);
+  const response = await authorizedFetch(url);
 
   if (response.status === 404) {
     return null;

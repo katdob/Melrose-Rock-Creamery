@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen, act, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { routeTree } from '../routeTree.gen'
 
 const WELCOME_TEXT =
@@ -33,7 +34,12 @@ const MENU_FLAVORS = [
 
 async function renderMenuPage() {
   const router = createRouter({ routeTree })
-  render(<RouterProvider router={router} />)
+  const queryClient = new QueryClient()
+  render(
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>,
+  )
   await act(async () => {
     await router.navigate({ to: '/menu' })
   })

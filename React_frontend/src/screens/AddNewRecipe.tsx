@@ -72,7 +72,11 @@ export default function AddNewRecipe() {
     }
 
     try {
-      const created = await postRecipe(NewRecipe.Name.trim(), NewRecipe.Author.trim())
+      const created = await postRecipe(
+        NewRecipe.Name.trim(),
+        NewRecipe.Author.trim(),
+        NewRecipe.Shareable === true,
+      )
       const recipeId = created.id
       setNewRecipe((prev) => ({ ...prev, RecipeId: recipeId }))
 

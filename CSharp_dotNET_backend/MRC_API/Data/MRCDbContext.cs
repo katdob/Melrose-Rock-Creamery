@@ -10,6 +10,7 @@ public class MRCDbContext : DbContext
     public DbSet<Recipe> Recipes => Set<Recipe>();
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Instruction> Instructions => Set<Instruction>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -36,6 +37,19 @@ public class MRCDbContext : DbContext
             e.ToTable("Instruction");
             e.HasKey(x => x.Id);
             e.HasIndex(x => x.RecipeId);
+        });
+
+        modelBuilder.Entity<User>(e =>
+        {
+            e.ToTable("User");
+            e.HasKey(x => x.Id);
+            e.Property(x => x.FirstName).HasMaxLength(120);
+            e.Property(x => x.LastName).HasMaxLength(120);
+            e.Property(x => x.Email).HasMaxLength(120);
+            e.HasIndex(x => x.Email).IsUnique();
+            e.Property(x => x.IsActive).HasDefaultValue(false);
+            e.Property(x => x.PasswordHash).HasMaxLength(500);
+            e.Property(x => x.RefreshTokenHash).HasMaxLength(500);
         });
     }
 }

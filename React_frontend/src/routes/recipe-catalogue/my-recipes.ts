@@ -1,5 +1,7 @@
 import React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { requireUserSession } from '../../auth/requireUserSession.ts'
+import { requestLoginPopup } from '../../auth/loginPopupRequest.ts'
 
 function MyRecipes(): React.ReactElement {
   return React.createElement(
@@ -11,6 +13,13 @@ function MyRecipes(): React.ReactElement {
 }
 
 export const Route = createFileRoute('/recipe-catalogue/my-recipes')({
+  beforeLoad: async () => {
+    const isAllowed = await requireUserSession()
+    if (!isAllowed) {
+      requestLoginPopup()
+      throw redirect({ to: '/menu' })
+    }
+  },
   component: MyRecipes,
 })
 

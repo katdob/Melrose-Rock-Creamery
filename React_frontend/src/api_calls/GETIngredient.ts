@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Fetches an ingredient by name, unit, and amount from the API.
  *
@@ -18,7 +20,7 @@ export async function getIngredient(
     ? `${baseUrl}/ingredients/by-name-unit-amount?${params}`
     : `/ingredients/by-name-unit-amount?${params}`;
 
-  const response = await fetch(url);
+  const response = await authorizedFetch(url);
 
   if (response.status === 404) {
     return null;

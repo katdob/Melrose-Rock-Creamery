@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Submits an instruction to the API.
  *
@@ -15,7 +17,7 @@ export async function postInstruction(
 ): Promise<{ id: number; text: string; order: number; recipeId: number }> {
   const url = baseUrl ? `${baseUrl}/instructions` : `/instructions`;
 
-  const response = await fetch(url, {
+  const response = await authorizedFetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

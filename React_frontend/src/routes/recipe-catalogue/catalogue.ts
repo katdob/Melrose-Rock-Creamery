@@ -1,16 +1,34 @@
-import React, { useEffect, useState } from 'react'
-import { createFileRoute } from '@tanstack/react-router'
+import React, { useState } from 'react'
+import { createFileRoute, redirect } from '@tanstack/react-router'
+import { useQuery } from '@tanstack/react-query'
 import { getSearchRecipes, type SearchRecipe } from '../../api_calls/GETSearchRecipes.ts'
 import { getRecipes } from '../../api_calls/GETRecipes.ts'
+import { requireUserSession } from '../../auth/requireUserSession.ts'
+import { requestLoginPopup } from '../../auth/loginPopupRequest.ts'
 
 function Catalogue(): React.ReactElement {
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<SearchRecipe[]>([])
-  const [searching, setSearching] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const [activeSearchTerm, setActiveSearchTerm] = useState('')
 
   const pageSize = 3
+  const trimmedActiveTerm = activeSearchTerm.trim()
+
+  const {
+    data: searchResults = [],
+    isLoading: searching,
+  } = useQuery({
+    queryKey: ['catalogue-recipes', trimmedActiveTerm, currentPage],
+    queryFn: async (): Promise<SearchRecipe[]> => {
+      if (trimmedActiveTerm) {
+        const data = await getSearchRecipes(trimmedActiveTerm, currentPage)
+        return data?.results ?? []
+      }
+
+      const data = await getRecipes(currentPage)
+      return data ?? []
+    },
+  })
 
   const downloadRecipeAsPdf = (recipe: SearchRecipe) => {
     const instructions = [...(recipe.instructions ?? [])]
@@ -58,39 +76,17 @@ function Catalogue(): React.ReactElement {
     printWindow.print()
   }
 
-  const loadPage = async (term: string, page: number) => {
-    const trimmedTerm = (term ?? '').trim()
-    setSearching(true)
-    try {
-      if (trimmedTerm) {
-        const data = await getSearchRecipes(trimmedTerm, page)
-        setSearchResults(data?.results ?? [])
-      } else {
-        const data = await getRecipes(page)
-        setSearchResults(data ?? [])
-      }
-      setCurrentPage(page)
-      setActiveSearchTerm(trimmedTerm)
-    } catch {
-      setSearchResults([])
-    } finally {
-      setSearching(false)
-    }
-  }
-
-  const handleSearch = async () => {
+  const handleSearch = () => {
     const q = (searchQuery ?? '').trim()
     if (!q) {
-      await loadPage('', 1)
+      setActiveSearchTerm('')
+      setCurrentPage(1)
       return
     }
 
-    await loadPage(q, 1)
+    setActiveSearchTerm(q)
+    setCurrentPage(1)
   }
-
-  useEffect(() => {
-    void loadPage('', 1)
-  }, [])
 
   const hasNextPage = searchResults.length === pageSize
 
@@ -256,7 +252,7 @@ function Catalogue(): React.ReactElement {
               className: 'add-ingredient-btn',
               disabled: searching || currentPage <= 1,
               onClick: () => {
-                if (currentPage > 1) void loadPage(activeSearchTerm, currentPage - 1)
+                if (currentPage > 1) setCurrentPage((p) => p - 1)
               },
             },
             'Previous',
@@ -268,7 +264,7 @@ function Catalogue(): React.ReactElement {
                   type: 'button',
                   className: 'add-ingredient-btn',
                   disabled: searching,
-                  onClick: () => void loadPage(activeSearchTerm, currentPage - 1),
+                  onClick: () => setCurrentPage((p) => p - 1),
                   style: { minWidth: '2.4rem' },
                 },
                 String(currentPage - 1),
@@ -291,7 +287,7 @@ function Catalogue(): React.ReactElement {
                   type: 'button',
                   className: 'add-ingredient-btn',
                   disabled: searching,
-                  onClick: () => void loadPage(activeSearchTerm, currentPage + 1),
+                  onClick: () => setCurrentPage((p) => p + 1),
                   style: { minWidth: '2.4rem' },
                 },
                 String(currentPage + 1),
@@ -304,7 +300,7 @@ function Catalogue(): React.ReactElement {
               className: 'add-ingredient-btn',
               disabled: searching || !hasNextPage,
               onClick: () => {
-                if (hasNextPage) void loadPage(activeSearchTerm, currentPage + 1)
+                if (hasNextPage) setCurrentPage((p) => p + 1)
               },
             },
             'Next',
@@ -322,6 +318,13 @@ function Catalogue(): React.ReactElement {
 }
 
 export const Route = createFileRoute('/recipe-catalogue/catalogue')({
+  beforeLoad: async () => {
+    const isAllowed = await requireUserSession()
+    if (!isAllowed) {
+      requestLoginPopup()
+      throw redirect({ to: '/menu' })
+    }
+  },
   component: Catalogue,
 })
 

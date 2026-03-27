@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Assigns ingredient IDs to a recipe.
  *
@@ -13,7 +15,7 @@ export async function postRecipeIngredients(
 ): Promise<{ recipeId: number; ingredientIds: number[] }> {
   const url = baseUrl ? `${baseUrl}/recipes/${recipeId}/ingredients` : `/recipes/${recipeId}/ingredients`;
 
-  const response = await fetch(url, {
+  const response = await authorizedFetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

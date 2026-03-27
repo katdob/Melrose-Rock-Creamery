@@ -1,4 +1,5 @@
 import type { SearchRecipe } from './GETSearchRecipes.ts'
+import { authorizedFetch } from './auth.ts'
 
 /**
  * Fetches paged catalogue recipes from the API.
@@ -16,7 +17,7 @@ export async function getRecipes(
   const path = `/recipes?${params.toString()}`
   const url = baseUrl ? `${baseUrl}${path}` : path
 
-  const response = await fetch(url)
+  const response = await authorizedFetch(url)
   if (!response.ok) {
     const errorText = await response.text()
     throw new Error(

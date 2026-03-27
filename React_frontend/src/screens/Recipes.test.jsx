@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen, act, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createRouter, RouterProvider } from '@tanstack/react-router'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { routeTree } from '../routeTree.gen'
 import * as getRecipeModule from '../api_calls/GETRecipe.ts'
 import * as getInstructionsModule from '../api_calls/GETInstructions.ts'
@@ -26,7 +27,12 @@ const CUISINART_TEXT =
 
 function renderApp() {
   const router = createRouter({ routeTree })
-  render(<RouterProvider router={router} />)
+  const queryClient = new QueryClient()
+  render(
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>,
+  )
   return router
 }
 

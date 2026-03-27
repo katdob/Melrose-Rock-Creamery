@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Fetches a recipe by name and author from the API.
  *
@@ -16,7 +18,7 @@ export async function getRecipe(
     ? `${baseUrl}/recipes/by-name-author?${params}`
     : `/recipes/by-name-author?${params}`;
 
-  const response = await fetch(url);
+  const response = await authorizedFetch(url);
 
   if (response.status === 404) {
     return null;

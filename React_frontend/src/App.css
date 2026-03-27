@@ -128,6 +128,15 @@ pinky ice cream palette
   border-bottom-color: var(--plush-light-medium-pink);
 }
 
+.login-tab-btn {
+  margin-left: 0.75rem;
+  border: 2px solid var(--mild-hot-pink);
+  border-radius: 6px;
+  padding: 0.35rem 0.9rem;
+  line-height: 1.2;
+  border-bottom-width: 2px;
+}
+
 .card {
   padding: 2em;
   margin-top: 15rem;
@@ -757,4 +766,68 @@ a.highlight-link:hover {
 .recipe-created-popup-content .add-ingredient-btn {
   margin-top: 1.5rem;
   align-self: center;
+}
+
+.login-popup-container {
+  min-height: auto;
+  width: min(44rem, 90vw);
+  max-width: 44rem;
+}
+
+.login-popup-content {
+  width: 100%;
+  gap: 0.8rem;
+}
+
+.login-popup-content .add-recipe-error {
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 12rem;
+  overflow-y: auto;
+}
+
+.login-popup-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.login-reset-link {
+  margin-top: -0.25rem;
+  margin-bottom: 0.25rem;
+  border: none;
+  background: transparent;
+  color: var(--mild-hot-pink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.login-reset-link:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.login-loading-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.login-spinner {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid var(--lavender);
+  border-top-color: var(--mild-hot-pink);
+  border-radius: 50%;
+  animation: login-spin 0.8s linear infinite;
+}
+
+@keyframes login-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

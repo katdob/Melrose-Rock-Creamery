@@ -1,3 +1,5 @@
+import { authorizedFetch } from './auth.ts'
+
 /**
  * Posts a recipe to the API.
  *
@@ -15,7 +17,7 @@ export async function postRecipe(
 ): Promise<{ id: number; name: string; author: string; createdDate: string; shareable: boolean }> {
   const url = baseUrl ? `${baseUrl}/recipes` : `/recipes`;
 
-  const response = await fetch(url, {
+  const response = await authorizedFetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
