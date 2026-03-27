@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using MRC_API.Data;
 using MRC_API.Models;
@@ -8,19 +10,25 @@ public static class POSTRecipe
 {
     public static IEndpointRouteBuilder MapPostRecipe(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/recipes", async (CreateRecipeRequest request, MRCDbContext db) =>
+        app.MapPost("/recipes", async (CreateRecipeRequest request, MRCDbContext db, ClaimsPrincipal user) =>
         {
             if (string.IsNullOrWhiteSpace(request.Name))
                 return Results.BadRequest("Name is required.");
             if (string.IsNullOrWhiteSpace(request.Author))
                 return Results.BadRequest("Author is required.");
 
+            var userIdClaim = user.FindFirstValue(JwtRegisteredClaimNames.Sub)
+                ?? user.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdClaim, out var creatingUserId))
+                return Results.Unauthorized();
+
             var recipe = new Recipe
             {
                 Name = request.Name.Trim(),
                 Author = request.Author.Trim(),
                 CreatedDate = DateTime.UtcNow,
-                Shareable = request.Shareable ?? false
+                Shareable = request.Shareable ?? false,
+                CreatingUser = creatingUserId,
             };
 
             db.Recipes.Add(recipe);
@@ -46,7 +54,8 @@ public static class POSTRecipe
                 name = recipe.Name,
                 author = recipe.Author,
                 createdDate = recipe.CreatedDate,
-                shareable = recipe.Shareable
+                shareable = recipe.Shareable,
+                creatingUser = recipe.CreatingUser,
             });
         })
             .WithName("PostRecipe");

@@ -223,6 +223,7 @@ app.Use(async (context, next) =>
 });
 
 app.MapGetRecipes();
+app.MapGetUserRecipes();
 app.MapGetSearchRecipes();
 app.MapGetRecipe();
 app.MapPostRecipe();

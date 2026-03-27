@@ -14,7 +14,14 @@ export async function postRecipe(
   author: string,
   shareable: boolean = false,
   baseUrl: string = '',
-): Promise<{ id: number; name: string; author: string; createdDate: string; shareable: boolean }> {
+): Promise<{
+  id: number
+  name: string
+  author: string
+  createdDate: string
+  shareable: boolean
+  creatingUser: number | null
+}> {
   const url = baseUrl ? `${baseUrl}/recipes` : `/recipes`;
 
   const response = await authorizedFetch(url, {

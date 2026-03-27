@@ -8,4 +8,5 @@ public class Recipe
     public DateTime CreatedDate { get; set; }
     public int[]? IngredientsList { get; set; }
     public bool Shareable { get; set; } = false;
+    public int? CreatingUser { get; set; }
 }
