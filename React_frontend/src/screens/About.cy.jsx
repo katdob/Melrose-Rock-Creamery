@@ -1,21 +1,18 @@
-import React from 'react'
-import { createRouter, RouterProvider } from '@tanstack/react-router'
-import { routeTree } from '../routeTree.gen'
+import {
+  dismissNewsletterPopup,
+  mountAppRouter,
+  navigateTo,
+  resetQueryState,
+} from '../../cypress/support/test-helpers'
 
 describe('<About /> route content', () => {
   let router
 
   beforeEach(() => {
-    router = createRouter({ routeTree })
-    cy.mount(<RouterProvider router={router} />)
-
-    return cy
-      .wrap(null)
-      .then(() => router.navigate({ to: '/about' }))
-      .then(() => {
-        // Dismiss the newsletter popup so tab clicks / link focus work.
-        cy.get('button.popup-close', { timeout: 10000 }).click({ force: true })
-      })
+    resetQueryState()
+    router = mountAppRouter()
+    navigateTo(router, '/about')
+    dismissNewsletterPopup()
   })
 
   it('shows the welcome text', () => {

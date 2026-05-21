@@ -9,7 +9,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "cypress:open": "cypress open --component",
+    "cypress:run": "cypress run --component"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.95.2",
