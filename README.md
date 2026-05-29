@@ -1,4 +1,4 @@
-This project was built with c#/.net10 and javascript/css/react, with jest, pythonunittest, and cypress on the qa side. I used the [Cursor AI](https://cursor.com/home?) development environment with Anthropic models (Opus, Sonnet). This is my first AI project and it's been fun to build. 
+This project was built with c#/.net10 and javascript/css/react, with jest, pythonunittest, and cypress on the qa side. I used the [Cursor AI](https://cursor.com/home?) development environment with Anthropic Claude models (Opus, Sonnet). This is my first AI project and it's been fun to build. 
 
 You can start the whole thing up with `docker-compose up -d --build`. You can destroy the whole thing with `docker-compose down -v && docker system prune -a -f` (be careful with this one). 
 
